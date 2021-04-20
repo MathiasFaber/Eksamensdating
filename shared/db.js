@@ -24,7 +24,7 @@ module.exports.startdb = startdb;
 
 function insert(payload){
     return new Promise((resolve, reject) => {
-        const sql = `INSERT INTO [Dating].[user] (name, email, birthdate, genderID, toothbrushColorID) VALUES (@name, @email, @birthdate, @genderID, @toothbrushColorID)`
+        const sql = `INSERT INTO [Dating].[user] (name, email, birthdate, genderID, toothbrushColorID, password) VALUES (@name, @email, @birthdate, @genderID, @toothbrushColorID, @password)`
         const request = new Request(sql, (err) => {
             if (err) {
                 reject(err)
@@ -36,6 +36,8 @@ function insert(payload){
         request.addParameter('birthdate', TYPES.Date, payload.birthdate);
         request.addParameter('genderID', TYPES.Int, payload.genderID);
         request.addParameter('toothbrushColorID', TYPES.Int, payload.toothbrushColorID);
+        request.addParameter('password', TYPES.VarChar, payload.password);
+
 
 
         request.on('requestCompleted', (row) => {
@@ -60,6 +62,7 @@ function select(name){
             reject({message: "user does not exist"})
         }
     });
+
     request.addParameter('name', TYPES.VarChar, name);
 
     request.on('row', (columns) => {
@@ -68,4 +71,5 @@ function select(name){
     connection.execSql(request)
     })
 }
+
 module.exports.select = select;
