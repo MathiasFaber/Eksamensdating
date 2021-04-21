@@ -53,7 +53,7 @@ module.exports.insert = insert;
 
 function select(name){
     return new Promise((resolve, reject) => {
-        const sql = 'SELECT * FROM [Dating].[user] where name = @name'
+        const sql = 'SELECT Dating.[user].[name], Dating.[user].[password] FROM Dating.[user] WHERE name = @name AND password = @password'
     const request = new Request(sql, (err, rowcount) => {
         if (err) {
             reject(err);
@@ -63,7 +63,8 @@ function select(name){
         }
     });
 
-    request.addParameter('name', TYPES.VarChar, name);
+    request.addParameter('name', TYPES.VarChar, payload.name);
+    request.addParameter('password', TYPES.VarChar, payload.password);
 
     request.on('row', (columns) => {
         resolve(columns)
@@ -73,3 +74,32 @@ function select(name){
 }
 
 module.exports.select = select;
+
+
+function login (payload){
+    console.log(payload)
+    return new Promise((resolve, reject) => {
+        const sql = 'SELECT * FROM Dating.[user] WHERE name = @name AND password = @password'
+        // Ændr password, så vi sender et hashed password og et salt. 
+    const request = new Request(sql, (err, rowcount) => {
+        if (err) {
+            reject(err);
+            console.log(err)
+        } else if (rowcount == 0) {
+            reject({message: "user does not exist"})
+        }
+    });
+
+
+    request.addParameter('id', TYPES.Int, payload.id);
+    request.addParameter('name', TYPES.VarChar, payload.name);
+    request.addParameter('password', TYPES.VarChar, payload.password);
+
+    request.on('row', (columns) => {
+        resolve(columns)
+    })
+    connection.execSql(request)
+    })
+}
+
+module.exports.login = login;

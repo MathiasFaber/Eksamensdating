@@ -3,10 +3,38 @@ var loginButton = document.getElementById("login");
 
 loginButton.addEventListener('click', function(){
     var name = document.getElementById("name").value
-    //var password = document.getElementById("password").value
+    var password = document.getElementById("password").value
 
-    fetch(`http://localhost:7071/api/user?name=${name}`)
-    //method post??
+    fetch("http://localhost:7071/api/login", {
+        method: 'POST',
+        body: JSON.stringify({
+            name: name,
+            password: password
+        }),
+        headers: {
+            "Content-Type": "application/json; charset-UTF-8"
+        }
+    })
+    .then((response) => {
+        return response.json();
+    })
+    .then((data) => {
+        console.log(data)
+        localStorage.setItem('currentUser', JSON.stringify(data));
+        //sender brugeren videre til sin profil side
+        window.location.href = ("myProfile.html")
+    })
+    .catch((err) => {
+        console.log(err)
+        alert("Failed to login")
+    })
+
+
+})
+
+    /*
+    fetch(`http://localhost:7071/api/user?name=${name}/user?password=${password}`
+    
         .then(
             function(response){
                 console.log(response)
@@ -26,3 +54,4 @@ loginButton.addEventListener('click', function(){
             console.log(err)
         })
 });
+*/
