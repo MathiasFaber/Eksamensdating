@@ -50,7 +50,7 @@ function insert(payload){
 }
 module.exports.insert = insert;
 
-
+/*
 function select(name){
     return new Promise((resolve, reject) => {
         const sql = 'SELECT Dating.[user].[name], Dating.[user].[password] FROM Dating.[user] WHERE name = @name AND password = @password'
@@ -74,7 +74,7 @@ function select(name){
 }
 
 module.exports.select = select;
-
+*/
 
 function login (payload){
     console.log(payload)
@@ -90,10 +90,34 @@ function login (payload){
         }
     });
 
-
-    request.addParameter('id', TYPES.Int, payload.id);
     request.addParameter('name', TYPES.VarChar, payload.name);
     request.addParameter('password', TYPES.VarChar, payload.password);
+
+    request.on('row', (columns) => {
+        console.log(columns[0].value)
+        resolve(columns + columns[0].value)
+    })
+    connection.execSql(request)
+    })
+}
+
+module.exports.login = login;
+
+
+function deleteProfile2 (payload){
+    console.log(payload)
+    return new Promise((resolve, reject) => {
+        const sql = 'DELETE FROM Dating.[user] WHERE name = @name'
+    const request = new Request(sql, (err, rowcount) => {
+        if (err) {
+            reject(err);
+            console.log(err)
+        } else if (rowcount == 0) {
+            reject({message: "user does not exist"})
+        }
+    });
+
+    request.addParameter('name', TYPES.VarChar, payload.name);
 
     request.on('row', (columns) => {
         resolve(columns)
@@ -102,4 +126,4 @@ function login (payload){
     })
 }
 
-module.exports.login = login;
+module.exports.deleteProfile2 = deleteProfile2;

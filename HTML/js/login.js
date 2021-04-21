@@ -16,12 +16,14 @@ loginButton.addEventListener('click', function(){
         }
     })
     .then((response) => {
+        console.log(response)
         return response.json();
     })
     .then((data) => {
         console.log(data)
         localStorage.setItem('currentUser', JSON.stringify(data));
         //sender brugeren videre til sin profil side
+
         window.location.href = ("myProfile.html")
     })
     .catch((err) => {
