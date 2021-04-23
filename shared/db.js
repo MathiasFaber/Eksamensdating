@@ -115,7 +115,7 @@ function deleteProfile2 (payload){
             console.log(err)
         } else if (rowcount == 0) {
             reject({message: "user does not exist"})
-        }  
+        };
     });
 
     request.addParameter('name', TYPES.VarChar, payload.name);
@@ -144,29 +144,30 @@ function getUsers (){
             console.log(err)
         } else if (rowcount == 0) {
             reject({message: "user does not exist"})
-        } 
+        };
     });
 /*
     request.on('row', (columns) => {
         resolve(columns)
     })
 */
-    
+    connection.execSql(request)
+
     var counter = 1
     response = {}
     request.on('row', (columns) => {
         response[counter] = {}
         columns.forEach(function (column) {
             response[counter][column.metadata.colName] = column.value
-            console.log(column.value)
+            });
+            console.log(JSON.stringify(response) + "1") //konsollen viser alle de 3 brugere, men 1 ad gangen
+            resolve(response); //resolve sender kun den første bruger afsted
         });
-        counter += 1
-    })
-    resolve(columns);
-    
-
-    connection.execSql(request)
+        
+        console.log(JSON.stringify(response) + "2")
+        // her får vi ingen af brugerne ud..?
+ 
     });
-}
+};
 
 module.exports.getUsers = getUsers;

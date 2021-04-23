@@ -7,19 +7,12 @@ document.addEventListener('DOMContentLoaded', function(){
         };
 
         response.json().then(function (data) {
-            console.log(data);
-            name = data[1].value
-            email = data[2].value
-            gender = data[3].value
-            country = data[4].value
-
-            console.log(name + email)
-            alert("Navn: " + name + " " + "Email: " + email + " " +  "Gender: " + gender + " " + "Country: " + country)
+            console.log(JSON.stringify(data) + "nænæ");
         });
-        
     })
+
     .catch((err) => {
         console.log(err)
         alert("Failed to get users")
-    })
+    });
 });
