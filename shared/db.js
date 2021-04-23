@@ -148,7 +148,7 @@ function getUsers (){
 /*
     request.on('row', (columns) => {
         resolve(columns)
-    })
+    }) 
 */
     
     var counter = 1
