@@ -10,30 +10,33 @@ module.exports = async function (context, req) {
         console.log("error1", error.message);
     }
 switch (req.method) {
-        case 'DELETE':
-            await deleteProfile1(context, req);
-            break;
+    case 'GET':
+        await get(context, req);
+        break;
         
         default:
             context.res = {
-                body: "please delete"
+                body: "please get or post"
             }
             break;
         }
 }
 
-async function deleteProfile1 (context, req){
+async function get (context, req){
     try {
-        let payload = req.body;
-        await db.deleteProfile2(payload);
+        let payload = req.body
+        console.log(JSON.stringify(payload) + "index.js")
+        let user = await db.getUsers(payload)
         context.res = {
-            body: {status: 'Succes(azurefunction), this user has been deleted: ' + JSON.stringify(payload)}
+            body: user
+        };
+        console.log(JSON.stringify(context.res) + "index.js123")
 
-        }
-    } catch (error){
+    } catch(error) {
         context.res = {
             status: 400,
-            body: error.message
-        }   
+            body: `no user - ${error.message}`
+        }
+
     }
 };

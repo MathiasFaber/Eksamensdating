@@ -96,16 +96,16 @@ function login (payload){
     request.on('row', (columns) => {
         console.log(columns[0].value)
         resolve(columns + columns[0].value)
-    })
+    });
     connection.execSql(request)
-    })
-}
+    });
+};
 
 module.exports.login = login;
 
 
 function deleteProfile2 (payload){
-    console.log(payload)
+    console.log(payload + "deleteProfile2 function")
     return new Promise((resolve, reject) => {
         const sql = 'DELETE FROM Dating.[user] WHERE name = @name'
     const request = new Request(sql, (err, rowcount) => {
@@ -114,16 +114,58 @@ function deleteProfile2 (payload){
             console.log(err)
         } else if (rowcount == 0) {
             reject({message: "user does not exist"})
-        }
+        }  
     });
 
     request.addParameter('name', TYPES.VarChar, payload.name);
 
     request.on('row', (columns) => {
+        console.log(columns)
         resolve(columns)
     })
     connection.execSql(request)
-    })
-}
+    });
+};
+
+    
+
 
 module.exports.deleteProfile2 = deleteProfile2;
+
+
+// Fjern promise, "return" resultatet istedet for at resolve. Brug syntax fra "get staff from first letter"
+function getUsers (){
+    return new Promise((resolve, reject) => {
+        const sql = 'SELECT * FROM Dating.[user]'
+    const request = new Request(sql, (err, rowcount) => {
+        if (err) {
+            reject(err);
+            console.log(err)
+        } else if (rowcount == 0) {
+            reject({message: "user does not exist"})
+        } 
+    });
+/*
+    request.on('row', (columns) => {
+        resolve(columns)
+    })
+*/
+    
+    var counter = 1
+    response = {}
+    request.on('row', (columns) => {
+        response[counter] = {}
+        columns.forEach(function (column) {
+            response[counter][column.metadata.colName] = column.value
+            console.log(column.value)
+        });
+        counter += 1
+    })
+    resolve(columns);
+    
+
+    connection.execSql(request)
+    });
+}
+
+module.exports.getUsers = getUsers;

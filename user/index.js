@@ -39,7 +39,6 @@ async function get (context, req){
             status: 400,
             body: `no user - ${error.message}`
         }
-
     }
 };
 
@@ -48,7 +47,7 @@ async function post (context, req){
         let payload = req.body;
         await db.insert(payload);
         context.res = {
-            body: {status: 'Succes' + JSON.stringify(payload)}
+            body: JSON.stringify(payload)
 
         }
     } catch (error){
