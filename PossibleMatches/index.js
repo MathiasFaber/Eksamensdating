@@ -27,7 +27,8 @@ async function get (context, req){
         let user = await db.getUsers()
         context.res = {
             body: {
-                user1: user            }
+                user: user
+            }
         };
         console.log(JSON.stringify(context.res) + "index.js123")
 
@@ -36,6 +37,5 @@ async function get (context, req){
             status: 400,
             body: `no user - ${error.message}`
         }
-
     }
 };

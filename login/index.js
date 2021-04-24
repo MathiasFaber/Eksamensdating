@@ -42,14 +42,13 @@ async function get (context, req){
 
     }
 };
-
+ 
 async function post (context, req){
     try {
         let payload = req.body;
-        await db.login(payload);
+        let user = await db.login(payload);
         context.res = {
-            body: {status: 'Succes' + JSON.stringify(payload)}
-
+            body: user
         }
     } catch (error){
         context.res = {

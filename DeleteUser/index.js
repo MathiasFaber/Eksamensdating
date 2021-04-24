@@ -2,7 +2,7 @@ const db = require("../shared/db")
 
 module.exports = async function (context, req) {
     context.log('JavaScript HTTP trigger function processed a request.');
-
+    console.log("--------",req)
     try{
         await db.startdb(); // start db connection
 
@@ -20,7 +20,7 @@ switch (req.method) {
             }
             break;
         }
-}
+} 
 
 async function deleteProfile1 (context, req){
     try {

@@ -7,4 +7,8 @@ class user {
         this.genderID = genderID;
         this.toothbrushColorID = toothbrushColorID;
     }
+
+
+    //module export
+
 }

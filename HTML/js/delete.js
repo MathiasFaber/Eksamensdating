@@ -1,26 +1,30 @@
 //opretter en variabel for log ud knappen
 var deleteBTN = document.getElementById("delete");
 
-
+ 
 //Funktionen startes ved klik på log ud knappen 
 deleteBTN.addEventListener("click", function() {
-    var name = JSON.stringify("b") //JSON.parse(localStorage.getItem("currentUser")) navn skal hentes fra localstorage
-    var password = JSON.stringify("b")
+    debugger;
+    const localStorageProps = JSON.parse(localStorage.getItem("currentUser"))
+    if(localStorageProps.length<0){
+        alert('localstorage is empty');
+        return;
+    }
     fetch("http://localhost:7071/api/DeleteUser", {
-        method: 'POST',
+        method: 'DELETE',
         body: JSON.stringify({
-            name: name, //id
-            password: password
+            name: localStorageProps[0].name
         }),
         headers: {
             "Content-Type": "application/json; charset-UTF-8"
         }
     })
     .then((response) => {
+        console.log(response)
         return response.json();
     })
     .then((response) => {
-        console.log(response + "fetch, delete.js")
+        console.log(JSON.stringify(response) + "====================fetch, delete.js")
     })
 
     .catch((err) => {

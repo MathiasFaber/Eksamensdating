@@ -20,8 +20,10 @@ loginButton.addEventListener('click', function(){
         return response.json();
     })
     .then((data) => {
+        // vi skal have brugeren der logger ind ID gemt i localstorage. 
+
+        let user = user.find() //to be continued
         localStorage.setItem('currentUser', JSON.stringify(data));
-        //Dette skal KUN være username og password
 
         window.location.href = ("myProfile.html")
     })
@@ -29,6 +31,5 @@ loginButton.addEventListener('click', function(){
         console.log(err)
         alert("Failed to login")
     })
-
 
 })

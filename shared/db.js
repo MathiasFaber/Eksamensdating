@@ -94,10 +94,17 @@ function login (payload){
     request.addParameter('name', TYPES.VarChar, payload.name);
     request.addParameter('password', TYPES.VarChar, payload.password);
 
-    request.on('row', (columns) => {
-        console.log(columns[0].value)
-        resolve(columns + columns[0].value)
-    });
+    let results = [];
+            request.on('row', async function(columns)  {
+            let result = {};
+            await columns.forEach(column => {
+            result[column.metadata.colName] = column.value;
+        });results.push(result);
+
+      });
+      request.on('doneProc', (rowCount) => {
+             resolve(results) 
+        });
     connection.execSql(request)
     });
 };
@@ -110,12 +117,15 @@ function deleteProfile2 (payload){
     return new Promise((resolve, reject) => {
         const sql = 'DELETE FROM Dating.[user] WHERE name = @name'
     const request = new Request(sql, (err, rowcount) => {
+        
         if (err) {
-            reject(err);
-            console.log(err)
+            return reject(err);
+           
         } else if (rowcount == 0) {
-            reject({message: "user does not exist"})
-        };
+            return reject({message: "user does not exist"})
+        }else{
+            return resolve({message: 'user deleted succesfully'})
+        }
     });
 
     request.addParameter('name', TYPES.VarChar, payload.name);
@@ -138,36 +148,46 @@ module.exports.deleteProfile2 = deleteProfile2;
 function getUsers (){
     return new Promise((resolve, reject) => {
         const sql = 'SELECT * FROM Dating.[user]'
-    const request = new Request(sql, (err, rowcount) => {
-        if (err) {
-            reject(err);
-            console.log(err)
-        } else if (rowcount == 0) {
-            reject({message: "user does not exist"})
-        };
-    });
-/*
-    request.on('row', (columns) => {
-        resolve(columns)
-    })
-*/
-    connection.execSql(request)
-
-    var counter = 1
-    response = {}
-    request.on('row', (columns) => {
-        response[counter] = {}
-        columns.forEach(function (column) {
-            response[counter][column.metadata.colName] = column.value
-            });
-            console.log(JSON.stringify(response) + "1") //konsollen viser alle de 3 brugere, men 1 ad gangen
-            resolve(response); //resolve sender kun den første bruger afsted
+        const request = new Request(sql, (err, rowcount) => {
+            if (err) {
+                reject(err);
+                console.log(err)
+            } else if (rowcount == 0) {
+                reject({message: "user does not exist"})
+            };
         });
-        
-        console.log(JSON.stringify(response) + "2")
-        // her får vi ingen af brugerne ud..?
- 
+
+        connection.execSql(request)
+
+        let results = [];
+            request.on('row', async function(columns)  {
+            let result = {};
+            await columns.forEach(column => {
+            result[column.metadata.colName] = column.value;
+        });results.push(result);
+
+      });
+      request.on('doneProc', (rowCount) => {
+             resolve(results) 
+        });
     });
 };
 
 module.exports.getUsers = getUsers;
+
+/* HJÆLP:
+
+Possiblematches:
+Vi har adgang til databasen, men får kun sendt 1 bruger afsted til vores frontend.
+Hvordan får vi alle brugerne sendt afsted??
+
+Delete user:
+Debugging, vores request kører forevigt, så der er et eller andet galt med det. 
+Hvis man annullerer requestet (postman) efter det har kørt et stykke tid, 
+kan vi se at det rent faktisk virker, og den sletter brugeren.
+Men hvad går galt? hvorfor kører requestet for evigt?
+
+Kan vi få evt. for en uddybning af hvordan request.on fungerer? hvordan vi sender data frem og tilbage?
+og hvordan man ville bearbejde den data i frontenden? kan vi loope igennem alle de objekter der er sendt og finde fx alle brugeres navne?
+
+*/
