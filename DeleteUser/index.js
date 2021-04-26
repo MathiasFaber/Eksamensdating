@@ -20,7 +20,7 @@ switch (req.method) {
             }
             break;
         }
-} 
+}
 
 async function deleteProfile1 (context, req){
     try {

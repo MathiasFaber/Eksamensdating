@@ -21,7 +21,7 @@ switch (req.method) {
             break;
         };
 };
-
+ 
 async function get (context, req){
     try {
         let user = await db.getUsers()

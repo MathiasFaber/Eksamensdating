@@ -80,7 +80,7 @@ module.exports.select = select;
 function login (payload){
     console.log(payload)
     return new Promise((resolve, reject) => {
-        const sql = 'SELECT * FROM Dating.[user] WHERE name = @name AND password = @password'
+        const sql = 'SELECT * FROM Dating.[user] WHERE email = @email AND password = @password'
         // Ændr password, så vi sender et hashed password og et salt. 
     const request = new Request(sql, (err, rowcount) => {
         if (err) {
@@ -91,7 +91,7 @@ function login (payload){
         }
     });
 
-    request.addParameter('name', TYPES.VarChar, payload.name);
+    request.addParameter('email', TYPES.VarChar, payload.email);
     request.addParameter('password', TYPES.VarChar, payload.password);
 
     let results = [];

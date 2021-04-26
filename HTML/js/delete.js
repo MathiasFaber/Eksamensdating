@@ -4,7 +4,6 @@ var deleteBTN = document.getElementById("delete");
  
 //Funktionen startes ved klik på log ud knappen 
 deleteBTN.addEventListener("click", function() {
-    debugger;
     const localStorageProps = JSON.parse(localStorage.getItem("currentUser"))
     if(localStorageProps.length<0){
         alert('localstorage is empty');
@@ -26,11 +25,14 @@ deleteBTN.addEventListener("click", function() {
     .then((response) => {
         console.log(JSON.stringify(response) + "====================fetch, delete.js")
     })
+    .then((data) => {
+        localStorage.removeItem('currentUser');
+
+        window.location.href = ("login.html")
+    })
 
     .catch((err) => {
         console.log(err)
         alert("Failed to delete")
-    })
-
-    //localStorage.removeItem('currentUser'); 
-})
+    });
+});

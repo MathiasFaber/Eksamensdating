@@ -15,4 +15,4 @@ document.addEventListener('DOMContentLoaded', function(){
         console.log(err)
         alert("Failed to get users")
     });
-});
+}); 

@@ -29,6 +29,8 @@ form.addEventListener('submit', function(e) {
     })
     .then((data) => {
         console.log(data)
+        console.log("user signed up successfully!:D")
+        window.location.href = ("login.html")
     })
     .catch((err) => {
         console.log(err)
