@@ -6,7 +6,71 @@
     <title>Update profile</title>
 </head>
 <body>
-    
-    
+    <h1> Edit my Account </h1>
+
+
+<form name="editForm" id="editForm">
+    <div id = "sign-up">
+<br>
+        <div id="errorMessages">
+            <div id="usernameErr" > </div>
+            <div id="ageErr" > </div>
+            <div id="descriptionErr" > </div>
+            <div id="emailErr"></div>
+            <div id="phoneErr"></div>
+            <div id="cityErr"></div>
+            <div id="zipErr"></div>
+            <div id="addressErr"></div>
+            <div id="passwordErr" ></div>
+        </div>
+        <br>
+
+        <br>
+        <p>Name</p>
+
+        <input type="text" id="name" value="">
+        <br/>
+
+        <br/>
+        <p>Email</p>
+        <input type="text" id="email" value="">
+        <br/>
+        <br/>
+
+        <br/>
+        <p>Birthdate</p>
+        <input type="datetime" name="begin" placeholder="yyyy-mm-dd" id="birthdate" onload="console.log(this.value.split('T')[0]);" value=""> 
+        <!-- Dato/tid forkert format, skal rettes. -->
+        <br/>
+        <br/>
+
+        <br/>
+        <p>GenderID</p>
+        <input type="int" id="genderID" value="">
+        <br/>
+        <br/>
+
+        <p>ToothbrushColorID</p>
+        <input type="int" id="toothbrushColorID" value="">
+        <br/>
+        <br/>
+
+        <p>Password</p>
+        <input type="text" id="password" value="">
+        <br/>
+        <br/>
+    <br>
+    <br>
+   <div >
+    <button id="updateBTN" type="button"> Update profile </button>
+    </div>
+<br>
+</div>
+</form>
+
+<!-- linker til JavaScript filerne -->
+<script src="./js/update.js"></script>
+
+
 </body>
 </html>

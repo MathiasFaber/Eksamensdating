@@ -175,19 +175,36 @@ function getUsers (){
 
 module.exports.getUsers = getUsers;
 
-/* HJÆLP:
 
-Possiblematches:
-Vi har adgang til databasen, men får kun sendt 1 bruger afsted til vores frontend.
-Hvordan får vi alle brugerne sendt afsted??
 
-Delete user:
-Debugging, vores request kører forevigt, så der er et eller andet galt med det. 
-Hvis man annullerer requestet (postman) efter det har kørt et stykke tid, 
-kan vi se at det rent faktisk virker, og den sletter brugeren.
-Men hvad går galt? hvorfor kører requestet for evigt?
+function update (payload){
+    console.log(payload + JSON.stringify(payload) + "update function")
+    return new Promise((resolve, reject) => {
+        const sql = 'UPDATE Dating.[user] SET name=@name, email=@email, birthdate=@birthdate, genderID=@genderID, toothbrushColorID=@toothbrushColorID, password=@password WHERE id = @id'
+    const request = new Request(sql, (err, rowcount) => {
+        
+        if (err) {
+            return reject(err);
+           
+        } else if (rowcount == 0) {
+            return reject({message: "user does not exist"})
+        }
+    });
 
-Kan vi få evt. for en uddybning af hvordan request.on fungerer? hvordan vi sender data frem og tilbage?
-og hvordan man ville bearbejde den data i frontenden? kan vi loope igennem alle de objekter der er sendt og finde fx alle brugeres navne?
+    request.addParameter('id', TYPES.Int, payload.id);
+    request.addParameter('name', TYPES.VarChar, payload.name);
+    request.addParameter('email', TYPES.VarChar, payload.email);
+    request.addParameter('birthdate', TYPES.Date, payload.birthdate);
+    request.addParameter('genderID', TYPES.Int, payload.genderID);
+    request.addParameter('toothbrushColorID', TYPES.Int, payload.toothbrushColorID);
+    request.addParameter('password', TYPES.VarChar, payload.password);
 
-*/
+    request.on('row', (columns) => {
+        console.log(columns)
+        resolve(columns)
+    })
+    connection.execSql(request)
+    });
+};
+
+module.exports.update = update;

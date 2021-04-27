@@ -7,7 +7,7 @@
       "name": "req",
       "methods": [
         "get",
-        "post"
+        "put"
       ]
     },
     {

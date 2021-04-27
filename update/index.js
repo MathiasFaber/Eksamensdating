@@ -24,8 +24,8 @@ switch (req.method) {
  
 async function get (context, req){
     try {
-        let user = await db.getUsers()
-        // req 
+        let payload = req.body;
+        let user = await db.update(payload)
         context.res = {
             body: {
                 user: user
