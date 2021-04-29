@@ -27,7 +27,6 @@
 
         <br>
         <p>Name</p>
-
         <input type="text" id="name" value="">
         <br/>
 
@@ -38,27 +37,56 @@
         <br/>
 
         <br/>
+        <p>Password</p>
+        <input type="text" id="password" value="">
+        <br/>
+        <br/>
+
         <p>Birthdate</p>
         <input type="datetime" name="begin" placeholder="yyyy-mm-dd" id="birthdate" onload="console.log(this.value.split('T')[0]);" value=""> 
         <!-- Dato/tid forkert format, skal rettes. -->
         <br/>
         <br/>
-
+ 
         <br/>
-        <p>GenderID</p>
-        <input type="int" id="genderID" value="">
-        <br/>
-        <br/>
-
-        <p>ToothbrushColorID</p>
-        <input type="int" id="toothbrushColorID" value="">
+        <p>ZipCode</p>
+        <input type="text" id="zipCode" value="">
         <br/>
         <br/>
 
-        <p>Password</p>
-        <input type="text" id="password" value="">
+        <p>Description</p>
+        <input type="text" id="description" value="">
         <br/>
         <br/>
+
+        <p>Gender</p>
+        <select class="gender" id="genderId">
+            <option value="1">Male</option>
+            <option value="2">Female</option> 
+        </select>
+        <br/>
+        <br/>
+
+        <p>Toothbrush Color</p>
+        <input type="text" id="toothbrushId" value="">
+        <br/>
+        <br/>
+
+        <p>Gender Preference</p>
+        <select class="gender" id="genderPreference">
+            <option value="1">Male</option>
+            <option value="2">Female</option> 
+        </select>
+        <br/>
+        <br/>
+        <p>Age Preference</p>
+        <select class="age" id="agePreference">
+            <option value="1">18-25</option>
+            <option value="2">26-35</option> 
+            <option value="3">36-50</option> 
+            <option value="4">51+</option>
+        </select>
+        
     <br>
     <br>
    <div >
