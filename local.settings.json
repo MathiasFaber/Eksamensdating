@@ -2,7 +2,8 @@
   "IsEncrypted": false,
   "Values": {
     "AzureWebJobsStorage": "",
-    "FUNCTIONS_WORKER_RUNTIME": "node"
+    "FUNCTIONS_WORKER_RUNTIME": "node",
+    "AzureWebJobs.notification.Disabled": "false"
   },
   "Host": {
     "LocalHttpPort": 7071,

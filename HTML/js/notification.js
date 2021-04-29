@@ -1,3 +1,5 @@
+// Virker ikke, BAD REQUEST
+
 var like  = document.getElementById("like")
 like.addEventListener('click', function(e) {
     e.preventDefault()
@@ -10,27 +12,29 @@ like.addEventListener('click', function(e) {
 
     console.log(otherUserId)
 
-    fetch("http://localhost:7071/api/Like", {
+    fetch("http://localhost:7071/api/notification", {
         method: 'POST',
         body: JSON.stringify({
-            currentUserId: currentUserId[0].userId,
-            otherUserId: otherUserId
+            currentUserId: currentUserId[0].userId
         }),
         headers: {
             "Content-Type": "application/json; charset-UTF-8"
         }
     })
-    .then((response) => {
-        return response.json();
-    })
-    .then((data) => {
-        console.log(data)
-        console.log("Like created")
-    })
+    .then(function (response){
+        if (response.status !== 200){
+            console.log("noget gik galt" + response.status)
+            return;
+        };
+
+        
+        response.json().then(function (data){
+            console.log(data)
+            // alert(data)
+        })
     .catch((err) => {
         console.log(err)
     })
 })
-
-
+})
 

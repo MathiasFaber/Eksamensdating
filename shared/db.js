@@ -218,3 +218,105 @@ function like(payload){
     });
 }
 module.exports.like = like;
+
+
+function matches (payload){
+    return new Promise((resolve, reject) => {
+        const sql = `SELECT userId, name, birthdate, zipCode, description, genderId, toothbrushId
+        FROM Dating.[User] AS u
+        LEFT OUTER JOIN Dating.[Like] AS l
+        ON u.userId = l.otherUserId
+        WHERE l.currentUserId = @currentUserId AND matchYN = 'Y'`
+        const request = new Request(sql, (err, rowcount) => {
+            if (err) {
+                reject(err);
+                console.log(err)
+            } else if (rowcount == 0) {
+                reject({message: "user does not exist"})
+            };
+        });
+
+        request.addParameter('currentUserId', TYPES.Int, payload.currentUserId);
+
+        connection.execSql(request)
+
+        let results = [];
+            request.on('row', async function(columns)  {
+            let result = {};
+            await columns.forEach(column => {
+            result[column.metadata.colName] = column.value;
+        });results.push(result);
+
+      });
+      request.on('doneProc', (rowCount) => {
+             resolve(results) 
+        });
+    });
+};
+
+module.exports.matches = matches;
+
+
+
+
+function deleteMatch123 (payload){
+    console.log(payload)
+    return new Promise((resolve, reject) => {
+        const sql = 'DELETE FROM Dating.[Like] WHERE currentUserId = @currentUserId AND otherUserId = @otherUserId'
+    const request = new Request(sql, (err, rowcount) => {
+        
+        if (err) {
+            return reject(err);
+           
+        } else if (rowcount == 0) {
+            return reject({message: "user does not exist"})
+        }else{
+            return resolve({message: 'user deleted succesfully'})
+        }
+    });
+
+    request.addParameter('currentUserId', TYPES.Int, payload.currentUserId);
+    request.addParameter('otherUserId', TYPES.Int, payload.otherUserId);
+
+
+    request.on('row', (columns) => {
+        console.log(columns)
+        resolve(columns)
+    })
+    connection.execSql(request)
+    });
+};
+
+module.exports.deleteMatch123 = deleteMatch123;
+
+
+
+// BAD REQUEST
+function notification(payload){
+    console.log(payload + "---------------------")
+    return new Promise((resolve, reject) => {
+        const sql = `SELECT * FROM Dating.[Like] WHERE currentUserId = @currentUserId AND matchYN = 'Y'`
+        const request = new Request(sql, (err) => {
+            if (err) {
+                reject(err)
+                console.log(err)
+            };
+        });
+        request.addParameter('currentUserId', TYPES.Int, payload.currentUserId);
+
+        let results = [];
+        request.on('row', async function(columns)  {
+        let result = {};
+        await columns.forEach(column => {
+        result[column.metadata.colName] = column.value;
+    });results.push(result);
+
+  });
+  request.on('doneProc', (rowCount) => {
+         resolve(results) 
+    });
+
+        connection.execSql(request)
+    });
+}
+module.exports.notification = notification;

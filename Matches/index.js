@@ -10,11 +10,10 @@ module.exports = async function (context, req) {
         console.log("error1", error.message);
     }
 switch (req.method) {
-
-        case 'POST':
-            await post(context, req);
-            break;
-        
+    case 'POST':
+        await post(context, req);
+        break;
+    
         default:
             context.res = {
                 body: "please get or post"
@@ -23,22 +22,19 @@ switch (req.method) {
         }
 }
 
-
 async function post (context, req){
     try {
-        let payload = req.body;
-        await db.like(payload);
+        let payload = req.body
+        let user = await db.matches(payload)
         context.res = {
-            body: JSON.stringify(payload)
+            body: user
+        };
 
-        }
-    } catch (error){
+    } catch(error) {
         context.res = {
             status: 400,
-            body: error.message
-        }   
+            body: `no user - ${error.message}`
+        }
     }
 };
-
-
 

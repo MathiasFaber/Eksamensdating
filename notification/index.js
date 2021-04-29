@@ -1,5 +1,7 @@
 const db = require('../shared/db')
 
+// BAD REQUEST virker ikke
+
 module.exports = async function (context, req) {
     context.log('JavaScript HTTP trigger function processed a request.');
 
@@ -27,7 +29,7 @@ switch (req.method) {
 async function post (context, req){
     try {
         let payload = req.body;
-        await db.like(payload);
+        await db.notification(payload);
         context.res = {
             body: JSON.stringify(payload)
 
@@ -39,6 +41,3 @@ async function post (context, req){
         }   
     }
 };
-
-
-
