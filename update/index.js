@@ -8,52 +8,35 @@ module.exports = async function (context, req) {
 
     } catch(error) {
         console.log("error1", error.message);
-    }
+    };
 switch (req.method) {
-    case 'GET':
+    case 'PUT':
         await get(context, req);
         break;
-    
-        case 'POST':
-            await post(context, req);
-            break;
         
         default:
             context.res = {
-                body: "please get or post"
+                body: "please put"
             }
             break;
-        }
-}
-
+        };
+};
+ 
 async function get (context, req){
     try {
-        let payload = req.body
-        let user = await db.login(payload)
+        let payload = req.body;
+        let user = await db.update(payload)
         context.res = {
-            body: user
+            body: {
+                user: user
+            }
         };
+        console.log(JSON.stringify(context.res) + "index.js123")
 
     } catch(error) {
         context.res = {
             status: 400,
             body: `no user - ${error.message}`
         }
-
-    }
-};
- 
-async function post (context, req){
-    try {
-        let payload = req.body;
-        let user = await db.login(payload);
-        context.res = {
-            body: user
-        }
-    } catch (error){
-        context.res = {
-            status: 400,
-            body: error.message
-        }   
     }
 };

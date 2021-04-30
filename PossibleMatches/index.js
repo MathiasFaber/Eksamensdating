@@ -8,7 +8,7 @@ module.exports = async function (context, req) {
 
     } catch(error) {
         console.log("error1", error.message);
-    }
+    };
 switch (req.method) {
     case 'GET':
         await get(context, req);
@@ -19,16 +19,16 @@ switch (req.method) {
                 body: "please get or post"
             }
             break;
-        }
-}
-
+        };
+};
+ 
 async function get (context, req){
     try {
-        let payload = req.body
-        console.log(JSON.stringify(payload) + "index.js")
-        let user = await db.getUsers(payload)
+        let user = await db.getUsers()
         context.res = {
-            body: user
+            body: {
+                user: user
+            }
         };
         console.log(JSON.stringify(context.res) + "index.js123")
 
@@ -37,6 +37,5 @@ async function get (context, req){
             status: 400,
             body: `no user - ${error.message}`
         }
-
     }
 };

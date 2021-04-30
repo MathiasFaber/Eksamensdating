@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update profile</title>
+</head>
+<body>
+    <h1> Edit user Account </h1>
+
+    <div >
+        <button id="deleteBTN" type="button"> Delete profile </button>
+        </div>
+
+
+<form name="editForm" id="editForm">
+    <div id = "sign-up">
+<br>
+        <br>
+
+        <br>
+        <p>Name</p>
+        <input type="text" id="name" value="">
+        <br/>
+
+        <br/>
+        <p>Email</p>
+        <input type="text" id="email" value="">
+        <br/>
+        <br/>
+
+        <br/>
+        <p>Password</p>
+        <input type="text" id="password" value="">
+        <br/>
+        <br/>
+
+        <p>Birthdate</p>
+        <input type="datetime" name="begin" placeholder="yyyy-mm-dd" id="birthdate" onload="console.log(this.value.split('T')[0]);" value=""> 
+        <!-- Dato/tid forkert format, skal rettes. -->
+        <br/>
+        <br/>
+ 
+        <br/>
+        <p>ZipCode</p>
+        <input type="text" id="zipCode" value="">
+        <br/>
+        <br/>
+
+        <p>Description</p>
+        <input type="text" id="description" value="">
+        <br/>
+        <br/>
+
+        <p>Gender</p>
+        <select class="gender" id="genderId">
+            <option value="1">Male</option>
+            <option value="2">Female</option> 
+        </select>
+        <br/>
+        <br/>
+
+        <p>Toothbrushcolor: </p>
+            <select class="toothbrushColor" id="toothbrushId">
+                <option value="1">Red</option>
+                <option value="2">Blue</option> 
+                <option value="3">Green</option> 
+                <option value="4">Pink</option> 
+                <option value="5">Bamboo</option> 
+                <option value="6">Purple</option> 
+                <option value="7">Torquoise</option> 
+                <option value="8">Black</option> 
+                <option value="9">White</option> 
+                <option value="10">Electric</option> 
+            </select> 
+        <br/>
+        <br/>
+
+        <p>Gender Preference</p>
+        <select class="gender" id="genderPreference">
+            <option value="1">Male</option>
+            <option value="2">Female</option> 
+        </select>
+        <br/>
+        <br/>
+        <p>Age Preference</p>
+        <select class="age" id="agePreference">
+            <option value="1">18-25</option>
+            <option value="2">26-35</option> 
+            <option value="3">36-50</option> 
+            <option value="4">51+</option>
+        </select>
+        
+    <br>
+    <br>
+   <div >
+    <button id="updateBTN" type="button"> Update profile </button>
+    </div>
+<br>
+
+</div>
+</form>
+
+<br>
+<br>
+<form action="../HTML/adminControlpanel.html">
+    <input type="submit" value="Go back" />
+</form> 
+
+<!-- linker til JavaScript filerne -->
+<script src="./js/adminUpdateUser.js"></script>
+<script src="./js/adminDeleteUser.js"></script>
+
+</body>
+</html>

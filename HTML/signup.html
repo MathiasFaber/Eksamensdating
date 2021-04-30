@@ -6,14 +6,54 @@
 </head>
 <body>
     <div>
-        <h1>sign up</h1>
+        <h1>Sign up</h1>
         <form id="signup" method="POST">
-            <input type="text" id="name" placeholder="name"/>
-            <input type="email" id="email" placeholder="email"/>
-            <input type="date" id="birthdate" placeholder="birthdate"/>
-            <input type="text" id="genderID" placeholder="gender"/>
-            <input type="text" id="toothbrushColorID" placeholder="toothbrushColor"/>
+            <input type="text" id="name" placeholder="Name"/>
+            <input type="email" id="email" placeholder="Email"/>
+            <input type="date" id="birthdate" placeholder="Birthdate"/>
+            <input type="text" id="zipcode" placeholder="Zipcode"/>
+
+            Gender:
+            <select class="gender" id="gender">
+                <option value="1">Male</option>
+                <option value="2">Female</option> 
+            </select>
+            Toothbrushcolor:
+            <select class="toothbrushColor" id="toothbrushColor">
+                <option value="1">Red</option>
+                <option value="2">Blue</option> 
+                <option value="3">Green</option> 
+                <option value="4">Pink</option> 
+                <option value="5">Bamboo</option> 
+                <option value="6">Purple</option> 
+                <option value="7">Torquoise</option> 
+                <option value="8">Black</option> 
+                <option value="9">White</option> 
+                <option value="10">Electric</option> 
+            </select>  
+            <br>
+            <br>
+            <input type="text" id="description" placeholder="Tell us about yourself (max. 200 letters)" size="50px" maxlength="200"/>
+            <br>
+            <br>
             <input type="text" id="password" placeholder="password"/>
+            <br>
+            <h1>What are you looking for?</h1>
+            <h2>Gender</h2>
+            <select class="gender" id="genderPreference">
+                <option value="1">Male</option>
+                <option value="2">Female</option> 
+            </select>
+            <h2>Age</h2>
+            <select class="age" id="agePreference">
+                <option value="1">18-25</option>
+                <option value="2">26-35</option> 
+                <option value="3">36-50</option> 
+                <option value="4">51+</option>
+            </select>
+
+
+
             <button type="submit" name="submit"> POST user</button>
         </form>
 

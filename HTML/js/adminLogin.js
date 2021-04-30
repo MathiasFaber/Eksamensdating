@@ -1,11 +1,10 @@
-
 var loginButton = document.getElementById("login");
 
 loginButton.addEventListener('click', function(){
     var email = document.getElementById("email").value
     var password = document.getElementById("password").value
 
-    fetch("http://localhost:7071/api/login", {
+    fetch("http://localhost:7071/api/loginAdmin", {
         method: 'POST',
         body: JSON.stringify({
             email: email,
@@ -22,17 +21,15 @@ loginButton.addEventListener('click', function(){
     .then((data) => {
         if(data.length == 0){
             console.log("no user lol")
-        }else{
+        } else {
             console.log("yes very much user")
             localStorage.setItem('currentUser', JSON.stringify(data));
-            window.location.href = ("myProfile.html")
+            window.location.href = ("adminControlpanel.html")
         }
-        
-        
     })
     .catch((err) => {
         console.log(err)
-        alert("Failed to login")
+        alert("User not authorized")
     })
 
 })

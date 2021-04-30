@@ -29,7 +29,7 @@ switch (req.method) {
 async function get (context, req){
     try {
         let payload = req.body
-        let user = await db.login(payload)
+        let user = await db.adminLogin(payload)
         context.res = {
             body: user
         };
@@ -46,7 +46,7 @@ async function get (context, req){
 async function post (context, req){
     try {
         let payload = req.body;
-        let user = await db.login(payload);
+        let user = await db.adminLogin(payload);
         context.res = {
             body: user
         }
