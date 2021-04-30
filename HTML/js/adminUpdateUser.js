@@ -1,20 +1,20 @@
 //variabel for den bruger, som er logget ind 
-var currentUser = JSON.parse(localStorage.getItem("currentUser"));
-console.log(currentUser)
+var foundUser = JSON.parse(localStorage.getItem("foundUser"));
+console.log(foundUser)
 
 // henter information fra min User Klasse, som blev oprettet i sign.js - formålet er at man som bruger kan se sine brugeroplysninger
-var userId = JSON.parse(localStorage.getItem("currentUser"))[0].userId;
+var userId = JSON.parse(localStorage.getItem("foundUser")).userId;
 console.log(userId)
-document.getElementById("name").value = currentUser[0].name;
-document.getElementById("email").value = currentUser[0].email;
-document.getElementById("password").value = currentUser[0].password;
-document.getElementById("birthdate").value = currentUser[0].birthdate;
-document.getElementById("zipCode").value = currentUser[0].zipCode;
-document.getElementById("description").value = currentUser[0].description;
-document.getElementById("genderId").value = currentUser[0].genderId;
-document.getElementById("toothbrushId").value = currentUser[0].toothbrushId;
-document.getElementById("genderPreference").value = currentUser[0].genderPreference;
-document.getElementById("agePreference").value = currentUser[0].agePreference;
+document.getElementById("name").value = foundUser.name;
+document.getElementById("email").value = foundUser.email;
+document.getElementById("password").value = foundUser.password;
+document.getElementById("birthdate").value = foundUser.birthdate;
+document.getElementById("zipCode").value = foundUser.zipCode;
+document.getElementById("description").value = foundUser.description;
+document.getElementById("genderId").value = foundUser.genderId;
+document.getElementById("toothbrushId").value = foundUser.toothbrushId;
+document.getElementById("genderPreference").value = foundUser.genderPreference;
+document.getElementById("agePreference").value = foundUser.agePreference;
 
 editUser = document.getElementById("editBtn1")
 
@@ -34,8 +34,6 @@ updateBTN.addEventListener('click', function(e) {
     var genderPreference = document.getElementById("genderPreference").value
     var agePreference = document.getElementById("agePreference").value 
 
-    let updateData1 = []
-
       let updateData = {
         userId: userId,
         name: name,
@@ -48,17 +46,11 @@ updateBTN.addEventListener('click', function(e) {
         toothbrushId: toothbrushId,
         genderPreference: genderPreference,
         agePreference: agePreference
-      }
+      }    
 
-      updateData1.push(updateData)
-
-      console.log(updateData)
-    
-      localStorage.setItem('currentUser', JSON.stringify(updateData1));
-
-      alert("User has been updated succesfully!:D")
-      window.location.href = ("myProfile.html")
-
+      localStorage.setItem('foundUser', JSON.stringify(updateData));
+      alert("User updated!:D")
+      window.location.href = ("adminUpdateUser.html")
 
 
     fetch("http://localhost:7071/api/update", {
@@ -69,9 +61,7 @@ updateBTN.addEventListener('click', function(e) {
         }
     })    
     .then((data) => {
-        console.log(data)
-        console.log("USER UPDATED!:D")
-        // window.location.href = ("myProfile.html")
+        console.log(data, "---------------------")
     })
     .catch((err) => {
         console.log(err)

@@ -10,19 +10,9 @@ form.addEventListener('submit', function(e) {
     var toothbrushId = document.getElementById("toothbrushColor").value; 
     var description = document.getElementById("description").value;
     var password = document.getElementById("password").value; 
-    var seekingGenderId = document.getElementById("seekingGender").value; 
-    var seekingAgeId = document.getElementById("seekingAge").value; 
+    var genderPreference = document.getElementById("genderPreference").value; 
+    var agePreference = document.getElementById("agePreference").value; 
 
-    console.log(name)
-    console.log(email)
-    console.log(birthdate)
-    console.log(zipCode)
-    console.log(gender)
-    console.log(toothbrushId)
-    console.log(description)
-    console.log(password)
-    console.log(seekingAge)
-    console.log(seekingGender)
 
     fetch("http://localhost:7071/api/user", {
         method: 'POST',
@@ -35,8 +25,8 @@ form.addEventListener('submit', function(e) {
             description: description,
             genderId: genderId,
             toothbrushId: toothbrushId,
-            seekingGenderId: seekingGenderId,
-            seekingAgeId: seekingAgeId
+            genderPreference: genderPreference,
+            agePreference: agePreference
         }),
         headers: {
             "Content-Type": "application/json; charset-UTF-8"

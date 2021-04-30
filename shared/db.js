@@ -39,7 +39,7 @@ function insert(payload){
         request.addParameter('zipCode', TYPES.VarChar, payload.zipCode);
         request.addParameter('genderId', TYPES.Int, payload.genderId);
         request.addParameter('toothbrushId', TYPES.Int, payload.toothbrushId);
-        request.addParameter('description', TYPES.Int, payload.description);
+        request.addParameter('description', TYPES.VarChar, payload.description);
         request.addParameter('genderPreference', TYPES.Int, payload.genderPreference);
         request.addParameter('agePreference', TYPES.Int, payload.agePreference);
 
@@ -125,7 +125,7 @@ module.exports.deleteProfile2 = deleteProfile2;
 // Fjern promise, "return" resultatet istedet for at resolve. Brug syntax fra "get staff from first letter"
 function getUsers (){
     return new Promise((resolve, reject) => {
-        const sql = 'SELECT * FROM Dating.[User]'
+        const sql = 'SELECT * FROM Dating.[User] WHERE roleId = 1'
         const request = new Request(sql, (err, rowcount) => {
             if (err) {
                 reject(err);
@@ -320,3 +320,108 @@ function notification(payload){
     });
 }
 module.exports.notification = notification;
+
+
+function adminLogin (payload){
+    console.log(payload)
+    return new Promise((resolve, reject) => {
+        const sql = 'SELECT * FROM Dating.[User] WHERE email = @email AND password = @password'
+        // Ændr password, så vi sender et hashed password og et salt. 
+    const request = new Request(sql, (err, rowcount) => {
+        if (err) {
+            reject(err);
+            console.log(err)
+        } else if (rowcount == 0) {
+            reject({message: "user does not exist"})
+        }
+    });
+
+    request.addParameter('email', TYPES.VarChar, payload.email);
+    request.addParameter('password', TYPES.VarChar, payload.password);
+
+    let results = [];
+            request.on('row', async function(columns)  {
+            let result = {};
+            await columns.forEach(column => {
+            result[column.metadata.colName] = column.value;
+        });
+        // console.log(result[column.metadata.colName.roleId], "--------------")
+        //if(result[column.metadata.colName.roleId])
+        results.push(result);
+        if(results[0].roleId === 2){
+            request.on('doneProc', (rowCount) => {
+                resolve(results) 
+           });
+        } else {
+            reject({message: "user does not exist"})
+        }
+      });
+    connection.execSql(request)
+    });
+};
+
+module.exports.adminLogin = adminLogin;
+
+
+
+function adminGetMatches (){
+    return new Promise((resolve, reject) => {
+        const sql = `SELECT * FROM Dating.[Like] WHERE matchYN = 'Y'`
+        const request = new Request(sql, (err, rowcount) => {
+            if (err) {
+                reject(err);
+                console.log(err)
+            } else if (rowcount == 0) {
+                reject({message: "user does not exist"})
+            };
+        });
+
+        connection.execSql(request)
+
+        let results = [];
+            request.on('row', async function(columns)  {
+            let result = {};
+            await columns.forEach(column => {
+            result[column.metadata.colName] = column.value;
+        });results.push(result);
+
+      });
+      request.on('doneProc', (rowCount) => {
+             resolve(results) 
+        });
+    });
+};
+
+module.exports.adminGetMatches = adminGetMatches;
+
+
+
+function getUserById (){
+    return new Promise((resolve, reject) => {
+        const sql = 'SELECT * FROM Dating.[User] WHERE roleId = 1'
+    const request = new Request(sql, (err, rowcount) => {
+        if (err) {
+            reject(err);
+            console.log(err)
+        } else if (rowcount == 0) {
+            reject({message: "user does not exist"})
+        }
+    });
+
+    let results = [];
+            request.on('row', async function(columns)  {
+            let result = {};
+            await columns.forEach(column => {
+            result[column.metadata.colName] = column.value;
+        });results.push(result);
+
+        console.log(results)
+
+      });
+      request.on('doneProc', (rowCount) => {
+             resolve(results) 
+        });
+    connection.execSql(request)
+    });
+};
+module.exports.getUserById = getUserById;

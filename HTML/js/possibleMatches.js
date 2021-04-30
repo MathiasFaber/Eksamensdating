@@ -13,30 +13,21 @@ document.addEventListener('DOMContentLoaded', function(){
         response.json().then(function (data) {
             let allUsers = JSON.stringify(data)
 
+            console.log(data.user)
             var userContainer = document.getElementById('user');
             var suggestedUsersArray = []
                 for(var j=0; j < data.user.length; j++){   
                     if(currentUser[0].userId == data.user[j].userId){
                         continue;
                     }
-                    if(currentUser[0].toothbrushId === data.user[j].toothbrushId){
+
+                    if(currentUser[0].toothbrushId == data.user[j].toothbrushId){
                         console.log(data.user[j].name, currentUser[0].name)
                         suggestedUsersArray.push(data.user[j])
                         console.log(suggestedUsersArray)
-                        /*
-                        var users = document.createElement('div');
-            
-                        // Her bliver de forskellige properties fra klassen udvalgt og kan displayes på siden 
-                        users.className = "match";
-                        
-                        // displayer navne på oprettede brugere i matches.html 
-                        users.innerHTML += '<div class="matchName" id='+data.user[j].id+' onclick="oneUser('+data.user[j].id+')">'+data.user[j].name+'</div>';
-                    
-                        // For hver bruger laves et "child". Brugeren vises altså i forlængelse af forrige bruger.
-                        userContainer.appendChild(users);
-                        */
                     }
                 }
+
                 var correctGender = []
                 for(var i=0; i < suggestedUsersArray.length; i++){
                     if(suggestedUsersArray[i].genderId == currentUser[0].genderPreference && currentUser[0].genderId == suggestedUsersArray[i].genderPreference){
