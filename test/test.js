@@ -17,7 +17,7 @@ describe('API', function (){
         .post('http://localhost:7071/api/Like')
         .send(Like)
         .end((err,response)=> {
-            response.should.have.status(200);
+            response.expect.to.have.status(200);
             /*
             response.should.be.a('object');
             expect(50).to.be.a('Integer');
