@@ -129,7 +129,6 @@ function getUsers (){
         const request = new Request(sql, (err, rowcount) => {
             if (err) {
                 reject(err);
-                console.log(err)
             } else if (rowcount == 0) {
                 reject({message: "user does not exist"})
             };
@@ -211,7 +210,31 @@ function like(payload){
 
         request.on('requestCompleted', (row) => {
             console.log('Like inserted! juhu', row)
-            resolve('User inserted', row)
+            //resolve('User inserted', row)
+
+            //Tjek for match
+            const sqlNotification = `SELECT * FROM Dating.[Like] WHERE currentUserId = @currentUserId AND otherUserId = @otherUserId AND matchYN = 'Y'`
+            const requestNotification = new Request(sqlNotification, (err) => {
+                if (err) {
+                    reject(err)
+                    console.log(err)
+                };
+            });
+
+            requestNotification.addParameter('currentUserId', TYPES.Int, payload.currentUserId);
+            requestNotification.addParameter('otherUserId', TYPES.Int, payload.otherUserId);
+
+
+            let match = false;
+            requestNotification.on('doneInProc', (rowCount, more, rows) => {
+                match = (rowCount == 1);
+            });
+
+            requestNotification.on('doneProc', () => {
+                resolve({match: match}) 
+           });
+
+            connection.execSql(requestNotification)
         });
 
         connection.execSql(request)
@@ -290,36 +313,6 @@ function deleteMatch123 (payload){
 module.exports.deleteMatch123 = deleteMatch123;
 
 
-
-// BAD REQUEST
-function notification(payload){
-    console.log(payload + "---------------------")
-    return new Promise((resolve, reject) => {
-        const sql = `SELECT * FROM Dating.[Like] WHERE currentUserId = @currentUserId AND matchYN = 'Y'`
-        const request = new Request(sql, (err) => {
-            if (err) {
-                reject(err)
-                console.log(err)
-            };
-        });
-        request.addParameter('currentUserId', TYPES.Int, payload.currentUserId);
-
-        let results = [];
-        request.on('row', async function(columns)  {
-        let result = {};
-        await columns.forEach(column => {
-        result[column.metadata.colName] = column.value;
-    });results.push(result);
-
-  });
-  request.on('doneProc', (rowCount) => {
-         resolve(results) 
-    });
-
-        connection.execSql(request)
-    });
-}
-module.exports.notification = notification;
 
 
 function adminLogin (payload){

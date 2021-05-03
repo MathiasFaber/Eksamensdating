@@ -5,11 +5,6 @@ like.addEventListener('click', function(e) {
     var currentUserId = JSON.parse(localStorage.getItem("currentUser"))
     var otherUserId = document.getElementById("id").textContent;
 
-    console.log(currentUserId)
-    console.log(currentUserId[0].userId)
-
-    console.log(otherUserId)
-
     fetch("http://localhost:7071/api/Like", {
         method: 'POST',
         body: JSON.stringify({
@@ -24,13 +19,12 @@ like.addEventListener('click', function(e) {
         return response.json();
     })
     .then((data) => {
-        console.log(data)
-        console.log("Like created")
+        console.log("Like created", data)
+        if (data.match == true) {
+            alert('Jubiii, match!')
+        }
     })
     .catch((err) => {
         console.log(err)
     })
-})
-
-
-
+});

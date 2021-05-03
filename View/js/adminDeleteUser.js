@@ -1,7 +1,6 @@
 //opretter en variabel for log ud knappen
 var deleteBTN = document.getElementById("deleteBTN");
 
- 
 //Funktionen startes ved klik på log ud knappen 
 deleteBTN.addEventListener("click", function() {
     const localStorageProps = JSON.parse(localStorage.getItem("foundUser"))

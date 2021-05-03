@@ -8,14 +8,9 @@ document.addEventListener('DOMContentLoaded', function(){
 
         
         response.json().then(function (data) {
-            let allUsers = JSON.stringify(data)
-            console.log(data)
-
             var userContainer = document.getElementById('user');
 
-            for(var i=0; i < data.length; i++){
-                console.log(data[i])
-                
+            for(var i=0; i < data.length; i++){                
                 // Her laves omtalte div, for hver bruger
                 var users = document.createElement('div');
             

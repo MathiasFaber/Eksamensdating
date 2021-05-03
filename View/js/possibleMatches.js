@@ -42,11 +42,9 @@ document.addEventListener('DOMContentLoaded', function(){
                 function calculateAge(user){
                 //konverterer fra SQL dataformat til js dataformat med Date()
                     var birthdate = new Date(correctGender[b].birthdate)
-                    // console.log(birthdate)
                     var ageDifMs = Date.now() - birthdate.getTime();
                     var ageDate = new Date(ageDifMs); // miliseconds from epoch
                     var age = Math.abs(ageDate.getUTCFullYear() - 1970);
-                    // console.log(age)
                     if(age >= 18 && age <= 25){
                         return 1;
                     } else if (age >= 26 && age <= 35){
@@ -88,32 +86,18 @@ document.addEventListener('DOMContentLoaded', function(){
                     } else if (toothbrushId = 10){
                         document.getElementById('toothbrushId').innerHTML = "Electric"
                     } 
-
                 }
-
 
                 var allCorrect = []
 
                 for(var b=0; b < correctGender.length; b++){
                     var age1 = calculateAge(correctGender[b])
                     var age2 = calculateAge(currentUser[0])
-                    console.log(age1)
-                    console.log(age2)
-                    console.log(age2)
-                    console.log(currentUser[0])
-                    console.log(currentUser)
 
                     if(age1 == currentUser[0].agePreference && age2 == correctGender[b].agePreference){
-                        console.log("Correct age")
-                        console.log(correctGender[b])
-                        console.log(currentUser.agePreference)
                         allCorrect.push(correctGender[b])
                     } 
                 }
-                console.log(allCorrect)
-
-                // Logik der viser 1 bruger ad gangen. 
-                //let index = parseInt(Math.random()*allCorrect.length); //Math.random() ganget med antallet af index i bruger-array. parseInt() gør decimal-tallet til et helt tal.
             
                 var i = 0;  // the index of the current item to show
 
@@ -128,13 +112,10 @@ document.addEventListener('DOMContentLoaded', function(){
                 displayToothbrush()
 
                 document.getElementById("like").addEventListener('click', function(){
-                    console.log(allCorrect.length)
                     if(i == allCorrect.length - 1){
-                        console.log(allCorrect.length)
                         alert("ikk flere brugere")
                     } else {
                         i++
-                        console.log(i)
                         document.getElementById('id').innerHTML = allCorrect[i].userId;    // get the item and increment i to move to the next
                         document.getElementById('user').innerHTML = allCorrect[i].name;    // get the item and increment i to move to the next
                         document.getElementById('description').innerHTML = allCorrect[i].description;
@@ -146,13 +127,10 @@ document.addEventListener('DOMContentLoaded', function(){
                     }
                 });
                 document.getElementById("dislike").addEventListener('click', function(){
-                    console.log(allCorrect.length)
                     if(i == allCorrect.length - 1){
-                        console.log(allCorrect.length)
                         alert("ikk flere brugere")
                     } else {
                         i++
-                        console.log(i)
                         document.getElementById('id').innerHTML = allCorrect[i].userId;    // get the item and increment i to move to the next
                         document.getElementById('user').innerHTML = allCorrect[i].name;    // get the item and increment i to move to the next
                         document.getElementById('description').innerHTML = allCorrect[i].description;
@@ -171,29 +149,4 @@ document.addEventListener('DOMContentLoaded', function(){
         console.log(err)
         alert("Failed to get users")
     });
-}); 
-
-/*
-function oneUser (input) {
-    console.log(input)
-    fetch("http://localhost:7071/api/PossibleMatches")
-    .then(function (response){
-        if (response.status !== 200){
-            console.log("noget gik galt" + response.status)
-            return;
-        };
-        response.json().then(function (data) {
-            console.log(data)
-            for(i=0; i < data.user.length; i++){
-                if(data.user[i].id == input){ .id?
-                    let founduser = data.user[i];
-                    console.log(founduser)
-                    localStorage.setItem('founduser', JSON.stringify(founduser))
-                }
-            }
-        })
-        window.location.href = ("possiblematch.html")
-    })
-}
-
-*/
+});

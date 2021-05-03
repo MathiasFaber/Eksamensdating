@@ -14,7 +14,7 @@ switch (req.method) {
         case 'POST':
             await post(context, req);
             break;
-        
+
         default:
             context.res = {
                 body: "please get or post"
@@ -27,18 +27,15 @@ switch (req.method) {
 async function post (context, req){
     try {
         let payload = req.body;
-        await db.like(payload);
+        let match = await db.like(payload);
         context.res = {
-            body: JSON.stringify(payload)
+            body: match
 
         }
     } catch (error){
         context.res = {
             status: 400,
             body: error.message
-        }   
+        }
     }
 };
-
-
-

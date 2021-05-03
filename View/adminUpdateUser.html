@@ -6,7 +6,11 @@
     <title>Update profile</title>
 </head>
 <body>
-    <h1> Edit my Account </h1>
+    <h1> Edit user Account </h1>
+
+    <div >
+        <button id="deleteBTN" type="button"> Delete profile </button>
+        </div>
 
 
 <form name="editForm" id="editForm">
@@ -68,7 +72,7 @@
                 <option value="8">Black</option> 
                 <option value="9">White</option> 
                 <option value="10">Electric</option> 
-            </select>  
+            </select> 
         <br/>
         <br/>
 
@@ -93,16 +97,19 @@
     <button id="updateBTN" type="button"> Update profile </button>
     </div>
 <br>
+
 </div>
 </form>
 
-<form action="../HTML/myProfile.html">
+<br>
+<br>
+<form action="../View/adminControlpanel.html">
     <input type="submit" value="Go back" />
 </form> 
 
 <!-- linker til JavaScript filerne -->
-<script src="./js/update.js"></script>
-
+<script src="./js/adminUpdateUser.js"></script>
+<script src="./js/adminDeleteUser.js"></script>
 
 </body>
 </html>
