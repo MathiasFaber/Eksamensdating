@@ -16,7 +16,7 @@ deleteBTN.addEventListener("click", function() {
         headers: {
             "Content-Type": "application/json; charset-UTF-8"
         }
-    })
+    }) 
     .then((response) => {
         console.log(response)
         return response.json();

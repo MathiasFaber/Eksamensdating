@@ -27,7 +27,7 @@ loginButton.addEventListener('click', function(){
             localStorage.setItem('currentUser', JSON.stringify(data));
             window.location.href = ("myProfile.html")
         }
-        
+         
         
     })
     .catch((err) => {

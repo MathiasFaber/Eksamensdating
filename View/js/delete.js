@@ -34,4 +34,4 @@ deleteBTN.addEventListener("click", function() {
         console.log(err)
         alert("Failed to delete")
     });
-});
+});  

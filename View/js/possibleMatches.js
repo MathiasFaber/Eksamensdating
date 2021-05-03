@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function(){
             return;
         };
 
-        
+         
         response.json().then(function (data) {
             let allUsers = JSON.stringify(data)
 

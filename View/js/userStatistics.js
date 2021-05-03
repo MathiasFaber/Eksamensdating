@@ -15,7 +15,7 @@ button1.addEventListener('click', function(){
 
         });
     })
-
+ 
     .catch((err) => {
         console.log(err)
         alert("Failed to get users")

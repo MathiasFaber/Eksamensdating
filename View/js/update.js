@@ -17,7 +17,7 @@ document.getElementById("genderPreference").value = currentUser[0].genderPrefere
 document.getElementById("agePreference").value = currentUser[0].agePreference;
 
 editUser = document.getElementById("editBtn1")
-
+ 
 var updateBTN  = document.getElementById("updateBTN")
 console.log(updateBTN)
 updateBTN.addEventListener('click', function(e) {

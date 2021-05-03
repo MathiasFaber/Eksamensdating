@@ -13,7 +13,7 @@ form.addEventListener('submit', function(e) {
     var genderPreference = document.getElementById("genderPreference").value; 
     var agePreference = document.getElementById("agePreference").value; 
 
-
+ 
     fetch("http://localhost:7071/api/user", {
         method: 'POST',
         body: JSON.stringify({

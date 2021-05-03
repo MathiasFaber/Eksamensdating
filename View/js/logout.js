@@ -8,4 +8,4 @@ logOutBTN.addEventListener("click", function() {
 
     //sender brugeren til siden, hvor vedkommende kan logge ind 
     window.location.replace("./login.html")
-})
+}) 

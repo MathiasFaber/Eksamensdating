@@ -4,9 +4,13 @@
   "description": "",
   "scripts": {
     "start": "func start",
-    "test": "echo \"No tests yet...\""
+    "test": "mocha"
   },
   "dependencies": {
+    "chai": "^4.3.4",
+    "chai-http": "^4.3.0",
+    "mocha": "^8.3.2",
+    "should": "^13.2.3",
     "tedious": "^11.0.7"
   },
   "devDependencies": {}

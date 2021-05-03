@@ -116,9 +116,6 @@ function deleteProfile2 (payload){
     });
 };
 
-    
-
-
 module.exports.deleteProfile2 = deleteProfile2;
 
 
@@ -193,8 +190,6 @@ function update (payload){
 module.exports.update = update;
 
 
-
-
 function like(payload){
     return new Promise((resolve, reject) => {
         const sql = `INSERT INTO [Dating].[Like] (currentUserId, otherUserId) VALUES (@currentUserId, @otherUserId)`
@@ -206,7 +201,6 @@ function like(payload){
         });
         request.addParameter('currentUserId', TYPES.Int, payload.currentUserId);
         request.addParameter('otherUserId', TYPES.Int, payload.otherUserId);
-
 
         request.on('requestCompleted', (row) => {
             console.log('Like inserted! juhu', row)
@@ -220,10 +214,8 @@ function like(payload){
                     console.log(err)
                 };
             });
-
             requestNotification.addParameter('currentUserId', TYPES.Int, payload.currentUserId);
             requestNotification.addParameter('otherUserId', TYPES.Int, payload.otherUserId);
-
 
             let match = false;
             requestNotification.on('doneInProc', (rowCount, more, rows) => {
@@ -301,7 +293,6 @@ function deleteMatch123 (payload){
     request.addParameter('currentUserId', TYPES.Int, payload.currentUserId);
     request.addParameter('otherUserId', TYPES.Int, payload.otherUserId);
 
-
     request.on('row', (columns) => {
         console.log(columns)
         resolve(columns)
@@ -338,8 +329,6 @@ function adminLogin (payload){
             await columns.forEach(column => {
             result[column.metadata.colName] = column.value;
         });
-        // console.log(result[column.metadata.colName.roleId], "--------------")
-        //if(result[column.metadata.colName.roleId])
         results.push(result);
         if(results[0].roleId === 2){
             request.on('doneProc', (rowCount) => {
@@ -418,3 +407,5 @@ function getUserById (){
     });
 };
 module.exports.getUserById = getUserById;
+ 
+

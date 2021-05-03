@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function(){
                 userContainer.appendChild(users);
             }
         });
-    })
+    })  
 
     .catch((err) => {
         console.log(err)
