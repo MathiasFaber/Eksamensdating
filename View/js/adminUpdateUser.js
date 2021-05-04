@@ -1,7 +1,7 @@
-//variabel for den bruger, som er logget ind 
+// This variable saves the user, that the admin has pressed and wants to edit or delete. 
 var foundUser = JSON.parse(localStorage.getItem("foundUser"));
 
-// henter information fra min User Klasse, som blev oprettet i sign.js - formålet er at man som bruger kan se sine brugeroplysninger
+// The following lines fills out the input fields with the 'foundUsers' details. 
 var userId = JSON.parse(localStorage.getItem("foundUser")).userId;
 document.getElementById("name").value = foundUser.name;
 document.getElementById("email").value = foundUser.email;
@@ -14,12 +14,14 @@ document.getElementById("toothbrushId").value = foundUser.toothbrushId;
 document.getElementById("genderPreference").value = foundUser.genderPreference;
 document.getElementById("agePreference").value = foundUser.agePreference;
 
-editUser = document.getElementById("editBtn1")
-
+// The edit button is defined
 var updateBTN  = document.getElementById("updateBTN")
+
+// when the edit button is clicked, the following function is run
 updateBTN.addEventListener('click', function(e) {
     e.preventDefault()
 
+    // All the new values/updated values are saved in these variables
     var name = document.getElementById("name").value
     var email = document.getElementById("email").value
     var password = document.getElementById("password").value
@@ -31,6 +33,7 @@ updateBTN.addEventListener('click', function(e) {
     var genderPreference = document.getElementById("genderPreference").value
     var agePreference = document.getElementById("agePreference").value 
 
+    // The data is stored in an object
       let updateData = {
         userId: userId,
         name: name,
@@ -45,20 +48,21 @@ updateBTN.addEventListener('click', function(e) {
         agePreference: agePreference
       }    
 
+      // The user is updated, the localstorage is changed, an alert pops up and the admin is sent back to the adminUpdateUser page. 
       localStorage.setItem('foundUser', JSON.stringify(updateData));
       alert("User updated!:D")
       window.location.href = ("adminUpdateUser.html")
 
-
+    // This fetch listens to the localhost port 7071, and sends a request to the specified endpoint
     fetch("http://localhost:7071/api/update", {
-        method: 'PUT',
-        body: JSON.stringify(updateData),
+        method: 'PUT', // PUT request, that updates infromation about a user. 
+        body: JSON.stringify(updateData), // The body of the request contains the updated data object. 
         headers: {
             "Content-Type": "application/json; charset-UTF-8"
         }
     })    
     .then((data) => {
-        console.log(data, "---------------------")
+        console.log(data)
     })
     .catch((err) => {
         console.log(err)

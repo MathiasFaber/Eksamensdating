@@ -1,7 +1,11 @@
+// the submit form is defined
 var form  = document.getElementById("signup")
+
+// when the user submits his or hers information, the following fucntion runs
 form.addEventListener('submit', function(e) {
     e.preventDefault()
 
+    // The details are stored in the following variables
     var name = document.getElementById("name").value; 
     var email = document.getElementById("email").value; 
     var birthdate = document.getElementById("birthdate").value; 
@@ -13,9 +17,10 @@ form.addEventListener('submit', function(e) {
     var genderPreference = document.getElementById("genderPreference").value; 
     var agePreference = document.getElementById("agePreference").value; 
 
- 
+    // This fetch listens to the localhost port 7071, and sends a request to the specified endpoint
     fetch("http://localhost:7071/api/user", {
-        method: 'POST',
+        method: 'POST', // POST request that sends all the user details to the API
+        // The variables are stored as an object, and sent to the API. 
         body: JSON.stringify({
             name: name,
             email: email,
@@ -35,6 +40,8 @@ form.addEventListener('submit', function(e) {
     .then((response) => {
         return response.json();
     })
+
+    // When the data is send back from the request, the user is signed up and sent to the login.html page. 
     .then((data) => {
         console.log(data)
         console.log("user signed up successfully!:D")

@@ -1,11 +1,12 @@
-//opretter en variabel for log ud knappen
+// The logout button is stored in a variable
 var logOutBTN = document.getElementById("logout");
 
-//Funktionen startes ved klik på log ud knappen 
+// When the button is clicked, this function runs
 logOutBTN.addEventListener("click", function() {
-    //sletter data fra localStorage 
+
+    // The localstorage key 'currentUser' is removed
     localStorage.removeItem('currentUser'); 
 
-    //sender brugeren til siden, hvor vedkommende kan logge ind 
+    // The user is send back to the login page
     window.location.replace("./login.html")
 }) 
