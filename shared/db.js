@@ -125,7 +125,7 @@ module.exports.login = login;
 function deleteProfile2 (payload){
     return new Promise((resolve, reject) => {
         // The SQL statement deletes the user from the database where the name matches the name of the user logged in. 
-        const sql = 'DELETE FROM Dating.[User] WHERE name = @name'
+        const sql = 'DELETE FROM Dating.[User] WHERE userId = @userId'
     const request = new Request(sql, (err, rowcount) => {
         
         if (err) {
@@ -141,7 +141,7 @@ function deleteProfile2 (payload){
     });
 
     // The only parameter here is the name, which is sent from the frontend
-    request.addParameter('name', TYPES.VarChar, payload.name);
+    request.addParameter('userId', TYPES.Int, payload.userId);
 
     request.on('row', (columns) => {
         console.log(columns)

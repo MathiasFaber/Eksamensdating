@@ -1,8 +1,8 @@
 // This variable saves the user, that the admin has pressed and wants to edit or delete. 
-var foundUser = JSON.parse(localStorage.getItem("foundUser"));
+var foundUser = JSON.parse(sessionStorage.getItem("foundUser"));
 
 // The following lines fills out the input fields with the 'foundUsers' details. 
-var userId = JSON.parse(localStorage.getItem("foundUser")).userId;
+var userId = JSON.parse(sessionStorage.getItem("foundUser")).userId;
 document.getElementById("name").value = foundUser.name;
 document.getElementById("email").value = foundUser.email;
 document.getElementById("password").value = foundUser.password;
@@ -49,7 +49,7 @@ updateBTN.addEventListener('click', function(e) {
       }    
 
       // The user is updated, the localstorage is changed, an alert pops up and the admin is sent back to the adminUpdateUser page. 
-      localStorage.setItem('foundUser', JSON.stringify(updateData));
+      sessionStorage.setItem('foundUser', JSON.stringify(updateData));
       alert("User updated!:D")
       window.location.href = ("adminUpdateUser.html")
 

@@ -44,7 +44,7 @@ form.addEventListener('submit', function(e) {
     // When the data is send back from the request, the user is signed up and sent to the login.html page. 
     .then((data) => {
         console.log(data)
-        console.log("user signed up successfully!:D")
+        alert("user signed up successfully!:D")
         window.location.href = ("login.html")
     })
     .catch((err) => {

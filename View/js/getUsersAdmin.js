@@ -55,8 +55,7 @@ function oneUser (input) {
             for(i=0; i < data.length; i++){
                 if(data[i].userId == input){ /*.id?*/
                     let founduser = data[i];
-                    console.log(founduser)
-                    localStorage.setItem('foundUser', JSON.stringify(founduser))
+                    sessionStorage.setItem('foundUser', JSON.stringify(founduser))
                 }
             }
         })

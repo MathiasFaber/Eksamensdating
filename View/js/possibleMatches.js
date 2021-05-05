@@ -110,7 +110,6 @@ document.addEventListener('DOMContentLoaded', function(){
                         allCorrect.push(correctGender[b])
                     } 
                 }
-            
 
                 var i = 0;  // the index of the current item to show
 
@@ -159,6 +158,8 @@ document.addEventListener('DOMContentLoaded', function(){
                         displayToothbrush()
                     }
                 });
+
+                
         
         });
     })

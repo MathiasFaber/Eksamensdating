@@ -14,7 +14,7 @@ deleteBTN.addEventListener("click", function() {
         method: 'DELETE', // Delete request is defined
         // The request contains the name of the user to be deleted. 
         body: JSON.stringify({
-            name: currentUser[0].name 
+            userId: currentUser[0].userId 
         }),
         headers: {
             "Content-Type": "application/json; charset-UTF-8"
