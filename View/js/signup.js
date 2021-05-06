@@ -17,6 +17,9 @@ form.addEventListener('submit', function(e) {
     var genderPreference = document.getElementById("genderPreference").value; 
     var agePreference = document.getElementById("agePreference").value; 
 
+    var newUser = new User(name, email, birthdate, zipCode, genderId, toothbrushId, description, password, genderPreference, agePreference)
+    console.log(newUser)
+
     // This fetch listens to the localhost port 7071, and sends a request to the specified endpoint
     fetch("http://localhost:7071/api/user", {
         method: 'POST', // POST request that sends all the user details to the API

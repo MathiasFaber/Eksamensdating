@@ -156,9 +156,27 @@ function deleteProfile2 (payload){
 // The function is exported in order to be called from the 'DeleteUser' azure functions. 
 module.exports.deleteProfile2 = deleteProfile2;
 
-
 // This function is called to show all users in the system 
-function getUsers (){
+function getUsers (data) {
+    // this function calculates a users age, from their birthdate. 
+    function calculateAge(user) {
+        // Converts the data from SQL format to JS format with the Date() function
+        var birthdate = new Date(user.birthdate)
+        var ageDifMs = Date.now() - birthdate.getTime();
+        var ageDate = new Date(ageDifMs); // miliseconds from epoch
+        var age = Math.abs(ageDate.getUTCFullYear() - 1970);
+        // As the genderpreferences are divided into 4 categories, the function returns an ID between 1-4, which indicates which interval of age the user belongs to. 
+        if(age >= 18 && age <= 25){
+            return 1;
+        } else if (age >= 26 && age <= 35){
+            return 2;
+        } else if (age >= 36 && age <= 50){
+            return 3;
+        } else if (age >= 51){
+            return 4;
+        }
+    }
+
     return new Promise((resolve, reject) => {
         // The SQL statement selects all users with the roleId 1. This is all the users excluding admins. 
         const sql = 'SELECT * FROM Dating.[User] WHERE roleId = 1'
@@ -166,28 +184,60 @@ function getUsers (){
             if (err) {
                 reject(err);
             } else if (rowcount == 0) {
-                reject({message: "user does not exist"})
+                reject({message: "User does not exist"})
             };
         });
 
         // This statement executes the SQL query with the parameter from the payload.
         connection.execSql(request)
 
+        var user = data.user;
+
         // An empty array is made to contain the objects from the 'result' object.
         let results = [];
-            request.on('row', async function(columns)  {
+        request.on('row', async function(columns)  {
             // the result object is made to contain all the information about a user, including keys and values for each column in the database
             let result = {};
             await columns.forEach(column => {
-            result[column.metadata.colName] = column.value;
-        });
-        // The objects are pushed into the empty array, in order to store alle the objects (for each user) at each index in the array. 
-        results.push(result);
+                result[column.metadata.colName] = column.value;
+            });
 
-      });
-      // The request is resolved on 'doneProc', because the forEach loop needs to have looped through all users before resolving. 
-      request.on('doneProc', (rowCount) => {
-             resolve(results) 
+  
+            for (;;) {
+                // If the user in the data is equal to the current user, it continues/ignores the suggested user. 
+                // This is done, so that the user does not see himself/herself as a possible match
+                if(user.userId == result.userId) {
+                    break;
+                }
+
+                // If the current user and the suggested user don't have the same color of toothbrush, the suggested user will be ignored.
+                // This is the first matching criteria in the system, a unique way of matching people by their toothbrush. 
+                if(user.toothbrushId != result.toothbrushId) {
+                    break;
+                }
+
+                // If the gender of the suggested user don't match the preference of the current user (and the other way around), the suggested user will be ignored.
+                if(result.genderId != user.genderPreference || user.genderId != result.genderPreference) {
+                    break;
+                }
+
+                // By using the calculateAge function, the currentUser and the other users age are defined. 
+                var age1 = calculateAge(result) // Age of suggested user
+                var age2 = calculateAge(user) // Age of current user
+
+                // If the currentusers age matches the other users agePreference and vice versa, the other user is pushed into the allCorrect array. 
+                if(age1 != user.agePreference || age2 != result.agePreference) {
+                    break;
+                } 
+
+                results.push(result);
+                break;
+            }
+        });
+
+        // The request is resolved on 'doneProc', because the forEach loop needs to have looped through all users before resolving. 
+        request.on('doneProc', (rowCount) => {
+            resolve(results) 
         });
     });
 };
@@ -491,3 +541,48 @@ function getUserById (){
 
 // The function is exported in order to be called from the 'getUsersAdmin' azure functions. 
 module.exports.getUserById = getUserById;
+
+
+// GG
+// This function selects all the users from the database, excluding admins. 
+function getAllLikes (payload){
+    return new Promise((resolve, reject) => {
+        // The SQL statement selects all from the users table, but only non-admins. 
+        const sql = 'SELECT * FROM Dating.[Like] WHERE currentUserId = @currentUserId AND otherUserId = @otherUserId'
+    const request = new Request(sql, (err, rowcount) => {
+        if (err) {
+            reject(err);
+            console.log(err)
+        } else if (rowcount == 0) {
+            reject({message: "No likes found"})
+        }
+    });
+
+    request.addParameter('currentUserId', TYPES.Int, payload.currentUserId);
+    request.addParameter('otherUserId', TYPES.Int, payload.otherUserId);
+
+
+    // An empty array is made to contain the objects from the 'result' object.
+    let results = [];
+    request.on('row', async function(columns)  {
+    // the result object is made to contain all the information about a user, including keys and values for each column in the database
+        let result = {};
+        await columns.forEach(column => {
+            result[column.metadata.colName] = column.value;
+        });
+        // The objects are pushed into the empty array, in order to store alle the objects (for each user) at each index in the array. 
+        results.push(result);
+
+      });
+      request.on('doneProc', (rowCount) => {
+          console.log(results, "0000000101010101001010101")
+        resolve(results) 
+        });
+
+    // This statement executes the SQL query with the parameters from the payload
+    connection.execSql(request)
+    });
+};
+
+// The function is exported in order to be called from the 'getUsersAdmin' azure functions. 
+module.exports.getAllLikes = getAllLikes;

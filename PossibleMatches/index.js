@@ -13,7 +13,7 @@ module.exports = async function (context, req) {
     // A switch statement is made here to define the different cases. 
     // If the case is able to be executed, it is executed. Else the default case is executed.
 switch (req.method) {
-    case 'GET':
+    case 'POST':
         await get(context, req);
         break;
         
@@ -28,7 +28,8 @@ switch (req.method) {
 // This get function starts a function in db.js, which gets all the users from the database and sends them back as the response. 
 async function get (context, req){
     try {
-        let user = await db.getUsers()
+        let payload = req.body
+        let user = await db.getUsers(payload)
         context.res = {
             body: {
                 user: user

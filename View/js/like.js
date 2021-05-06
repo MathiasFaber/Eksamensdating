@@ -1,3 +1,4 @@
+/*
 // The like button is defined
 var like  = document.getElementById("like")
 // the function is run by clicking the like button
@@ -33,3 +34,4 @@ like.addEventListener('click', function(e) {
         console.log(err)
     })
 }); 
+*/

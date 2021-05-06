@@ -1,9 +1,7 @@
 // This variable links to the db.js file, and this is where the db functions is called.
-const db = require("../shared/db")
+const db = require('../shared/db.js')
 
 module.exports = async function (context, req) {
-    context.log('JavaScript HTTP trigger function processed a request.');
-
     try{
         await db.startdb(); // start db connection
 
@@ -31,11 +29,12 @@ switch (req.method) {
 // The payload contains the request, which is the login information tyoped in by the user in the frontend. 
 async function post (context, req){
     try {
-        
+
         let payload = req.body;
         let user = await db.login(payload);
         context.res = {
-            body: user
+            body: user,
+            status: 200
         }
     } catch (error){
         context.res = {

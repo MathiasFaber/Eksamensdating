@@ -1,6 +1,6 @@
-class match {
-    constructor(user1ID, user2ID){
-        this.user1ID = user1ID;
-        this.user2ID = user2ID;
+class Match {
+    constructor(currentUserId, otherUserId){
+        this.currentUserId = currentUserId;
+        this.otherUserId = otherUserId;
     }
 }

@@ -2,15 +2,19 @@ class User {
     constructor(name, email, password, birthdate, zipCode, description, genderId, toothbrushId, roleId) {
         this.name = name;
         this.email = email;
-        this. password = password;
-        this. birthdate = birthdate;
-        this. zipCode = zipCode;
+        this.password = password;
+        this.birthdate = birthdate;
+        this.zipCode = zipCode;
         this.description = description;
         this.genderId = genderId;
         this.toothbrushId = toothbrushId;
         this.roleId = roleId;
     };
 
+    
+
+    // User funktioner
+/*
     //Beregner brugerens alder ud fra fødselsdato
     calculateAge(birthdate){
         var ageDifMs = Date.now() - birthdate.getTime();
@@ -19,7 +23,6 @@ class User {
     }
     //Opretter egen bruger
     createMyUser() {
-   
     };
 
     //Sletter egen bruger
@@ -48,6 +51,14 @@ class User {
 
     //Fjerner et givet like af anden bruger
     deleteLike(otherUserId);
+    */
 };
 
-module.exports = User;
+class Admin extends User {
+    constructor(name, email, password, birthdate, zipCode, description, genderId, toothbrushId, roleId){
+        super(name, email, password, birthdate, zipCode, description, genderId, toothbrushId, roleId)
+    }
+
+    // Admin functions
+
+}

@@ -1,7 +1,7 @@
 // This variable links to the db.js file, and this is where the db functions is called.
 const db = require('../shared/db')
 
-module.exports = async function (context, req) {
+module.exports = async function like (context, req) {
     context.log('JavaScript HTTP trigger function processed a request.');
 
     try{
