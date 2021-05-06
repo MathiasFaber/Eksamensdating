@@ -11,7 +11,23 @@ class User {
         this.roleId = roleId;
     };
 
-    
+    calculateAge(user) {
+        // Converts the data from SQL format to JS format with the Date() function
+        var birthdate = new Date(user.birthdate)
+        var ageDifMs = Date.now() - birthdate.getTime();
+        var ageDate = new Date(ageDifMs); // miliseconds from epoch
+        var age = Math.abs(ageDate.getUTCFullYear() - 1970);
+        // As the genderpreferences are divided into 4 categories, the function returns an ID between 1-4, which indicates which interval of age the user belongs to. 
+        if(age >= 18 && age <= 25){
+            return 1;
+        } else if (age >= 26 && age <= 35){
+            return 2;
+        } else if (age >= 36 && age <= 50){
+            return 3;
+        } else if (age >= 51){
+            return 4;
+        }
+    }
 
     // User funktioner
 /*
@@ -53,6 +69,9 @@ class User {
     deleteLike(otherUserId);
     */
 };
+
+module.exports = User;
+
 
 class Admin extends User {
     constructor(name, email, password, birthdate, zipCode, description, genderId, toothbrushId, roleId){

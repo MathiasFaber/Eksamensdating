@@ -37,6 +37,10 @@ module.exports.sqlConnection = connection
 
 module.exports.startdb = startdb;
 
+
+const User = require("../model/user.js")
+
+
 // This function is called, when a signup in the datingapp is made. 
 // The function is feeded with "payload" which is the data sent from the frontend. 
 function insert(payload){
@@ -159,24 +163,6 @@ module.exports.deleteProfile2 = deleteProfile2;
 // This function is called to show all users in the system 
 function getUsers (data) {
     // this function calculates a users age, from their birthdate. 
-    function calculateAge(user) {
-        // Converts the data from SQL format to JS format with the Date() function
-        var birthdate = new Date(user.birthdate)
-        var ageDifMs = Date.now() - birthdate.getTime();
-        var ageDate = new Date(ageDifMs); // miliseconds from epoch
-        var age = Math.abs(ageDate.getUTCFullYear() - 1970);
-        // As the genderpreferences are divided into 4 categories, the function returns an ID between 1-4, which indicates which interval of age the user belongs to. 
-        if(age >= 18 && age <= 25){
-            return 1;
-        } else if (age >= 26 && age <= 35){
-            return 2;
-        } else if (age >= 36 && age <= 50){
-            return 3;
-        } else if (age >= 51){
-            return 4;
-        }
-    }
-
     return new Promise((resolve, reject) => {
         // The SQL statement selects all users with the roleId 1. This is all the users excluding admins. 
         const sql = 'SELECT * FROM Dating.[User] WHERE roleId = 1'
@@ -221,9 +207,11 @@ function getUsers (data) {
                     break;
                 }
 
+
                 // By using the calculateAge function, the currentUser and the other users age are defined. 
-                var age1 = calculateAge(result) // Age of suggested user
-                var age2 = calculateAge(user) // Age of current user
+                // The calculateAge function is a part of the User class, which is found at ../model/user.js
+                var age1 = new User(result).calculateAge(result) // Age of suggested user
+                var age2 = new User(user).calculateAge(user) // Age of current user
 
                 // If the currentusers age matches the other users agePreference and vice versa, the other user is pushed into the allCorrect array. 
                 if(age1 != user.agePreference || age2 != result.agePreference) {
