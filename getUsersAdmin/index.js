@@ -4,15 +4,9 @@ const db = require("../shared/db")
 module.exports = async function (context, req) {
     context.log('JavaScript HTTP trigger function processed a request.');
 
-    try{
-        await db.startdb(); // start db connection
-
-    } catch(error) {
-        console.log("error1", error.message);
-    }
     // A switch statement is made here to define the different cases. 
     // If the case is able to be executed, it is executed. Else the default case is executed.
-switch (req.method) {
+    switch (req.method) {
         // This get case, calls the function get on line 30
         case 'GET':
             await get(context, req);
@@ -20,10 +14,10 @@ switch (req.method) {
         
         default:
             context.res = {
-                body: "-------------"
+                body: "--hej med dig--"
             }
             break;
-        }
+    }
 }
 
 // This function calls the getUserById function from db.js. 

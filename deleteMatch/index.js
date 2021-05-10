@@ -2,16 +2,11 @@
 const db = require("../shared/db")
 
 module.exports = async function (context, req) {
-    try{
-        // the startdb function is called, which starts the database connection
-        await db.startdb();
-    } catch(error) {
-        console.log("error1", error.message);
-    }
+
     // A switch statement is made here to define the different cases. 
     // If the case is able to be executed, it is executed. Else the default case is executed.
-switch (req.method) {
-    // This delete case, calls the deleteMatch function on line 28
+    switch (req.method) {
+        // This delete case, calls the deleteMatch function on line 28
         case 'DELETE':
             await deleteMatch(context, req);
             break;
@@ -21,14 +16,14 @@ switch (req.method) {
                 body: "please delete"
             }
             break;
-        }
+    }
 }
 
-// This function is called at line 16, and calls the deleteMatch123 function from db.js, containing the data from the request(sent from the frontend)
+// This function calls the deleteMatch function from db.js, containing the data from the request(sent from the frontend)
 async function deleteMatch (context, req){
     try {
         let payload = req.body;
-        await db.deleteMatch123(payload);
+        await db.deleteMatch(payload);
         context.res = {
             body: {status: JSON.stringify(payload)}
 

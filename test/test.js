@@ -97,7 +97,7 @@ describe("/POST users", () => {
             }
             await httpFunction(context,request);
 
-            //expect(context.status).to.equal(200);
+            expect(context.status).to.equal(200);
 
             expect(context.res.body).to.equal('object');
 
