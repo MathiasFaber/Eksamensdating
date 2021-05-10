@@ -1,0 +1,14 @@
+{  
+    "server": "Datingserver2.database.windows.net", 
+    "authentication": {
+        "type": "default",
+        "options": {
+            "userName": "Amalie", 
+            "password": "Studiegruppen1234" 
+        }
+    },
+    "options": {
+        "encrypt": true,
+        "database": "Dating"
+    }
+} 
