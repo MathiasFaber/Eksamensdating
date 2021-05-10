@@ -3,32 +3,28 @@ var deleteBTN = document.getElementById("delete");
 
 // The function is started, when the button is clicked
 deleteBTN.addEventListener("click", function() {
-    const currentUser = JSON.parse(localStorage.getItem("currentUser"))
-    // Error handling. Alerts an error if there is no user logged in
-    if(currentUser.length<0){
+    // Getting currentUserList from localstorage
+    const currentUserList = JSON.parse(localStorage.getItem("currentUser"));
+    // Error handling - Alerts an error if there is no user logged in
+    if(currentUserList.length<0){
         alert('localstorage is empty');
         return;
     }
-    // This fetch listens to the localhost port 7071, and sends a request to the specified endpoint
-    fetch("http://localhost:7071/api/DeleteUser", {
-        method: 'DELETE', // Delete request is defined
-        // The request contains the name of the user to be deleted. 
-        body: JSON.stringify({
-            userId: currentUser[0].userId 
-        }),
-        headers: {
-            "Content-Type": "application/json; charset-UTF-8"
-        }
-    })
-    // When the user is deleteed in the databse, the user is removed from localstorage too, and the user is sent to the login page. 
-    .then((data) => {
+    // Defining that the currentUser is the first one in the currentUserList
+    const currentUser = currentUserList[0];
+    
+    // If the requested fetch in the function user.deleteUser went well, this callback function is called
+    function myCallBack() {
+        // The currentUser is deleted from localstorage
         localStorage.removeItem('currentUser');
-
+        // The user will be taken back to the login page
         window.location.href = ("login.html")
-    })
+    }
 
-    .catch((err) => {
-        console.log(err)
-        alert("Failed to delete")
-    });
+    // Instantiating the User with attributes from the currentUser
+    var user = new User(currentUser.name, currentUser.email, currentUser.password, currentUser.birthdate, 
+        currentUser.zipCode, currentUser.description, currentUser.genderId, currentUser.toothbrushId, currentUser.genderPreference, currentUser.agePreference
+    );
+    // Calling the deleteUser function in the User class with currentUser.userId and myCallBack as inputs
+    user.deleteUser(currentUser.userId, myCallBack);
 });  

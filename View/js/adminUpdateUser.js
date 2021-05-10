@@ -34,7 +34,7 @@ updateBTN.addEventListener('click', function(e) {
     var agePreference = document.getElementById("agePreference").value 
 
     // The data is stored in an object
-      let updateData = {
+    let updateData = {
         userId: userId,
         name: name,
         email: email,
@@ -46,26 +46,21 @@ updateBTN.addEventListener('click', function(e) {
         toothbrushId: toothbrushId,
         genderPreference: genderPreference,
         agePreference: agePreference
-      }    
+    }    
 
-      // The user is updated, the localstorage is changed, an alert pops up and the admin is sent back to the adminUpdateUser page. 
-      sessionStorage.setItem('foundUser', JSON.stringify(updateData));
-      alert("User updated!:D")
-      window.location.href = ("adminUpdateUser.html")
+    // If the requested fetch in the function admin.updateUser went well, this callback function is called
+    function myCallback () {
+        // The user is updated, the sessionstorage is changed 
+        sessionStorage.setItem('foundUser', JSON.stringify(updateData));
+        //An alert pops up informing the admin that the user was updated
+        alert("User updated")
+        // The admin is sent back to the adminUpdateUser page
+        window.location.href = ("adminUpdateUser.html")
+    }
 
-    // This fetch listens to the localhost port 7071, and sends a request to the specified endpoint
-    fetch("http://localhost:7071/api/update", {
-        method: 'PUT', // PUT request, that updates infromation about a user. 
-        body: JSON.stringify(updateData), // The body of the request contains the updated data object. 
-        headers: {
-            "Content-Type": "application/json; charset-UTF-8"
-        }
-    })    
-    .then((data) => {
-        console.log(data)
-    })
-    .catch((err) => {
-        console.log(err)
-    })
+    // When instantiating the class, there is no need for inserting values since only the methods of the class is interesting
+    var admin = new Admin(null, null, 2);
+    // Calling the updateUser function in the Admin class with updateData and myCallback as inputs
+    admin.updateUser(updateData, myCallback);
 })
  

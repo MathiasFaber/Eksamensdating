@@ -1,13 +1,11 @@
-// Currentuser from localstorage is stored in a variable
-var currentUser = JSON.parse(localStorage.getItem('currentUser'));
-// 
 var nextUserIndex = 0;
 console.log('0', nextUserIndex);
 // Creates an empty array to store the users
 var suggestedUsersArray = [];
 
-// The first user of the allCorrect array is displayed on the possibleMatches page
+// Functions that define what users to display
 function displayUser(user) {
+    // The first user of the allCorrect array is displayed on the possibleMatches page
     document.getElementById('id').innerHTML = user.userId;
     document.getElementById('user').innerHTML = user.name;
     document.getElementById('description').innerHTML = user.description;
@@ -64,80 +62,65 @@ function displayNextUser() {
 
 // The following function is started when the HTML page is loaded. 
 document.addEventListener('DOMContentLoaded', function(){
-    var currentUserId = currentUser;
+    // Getting currentUserList from localstorage
+    const currentUserList = JSON.parse(localStorage.getItem("currentUser"));
+    // Error handling - Alerts an error if there is no user logged in
+    if(currentUserList.length<0){
+        alert('localstorage is empty');
+        return;
+    }
+    // Defining that the currentUser is the first one in the currentUserList
+    var currentUser = currentUserList[0];
+
+    // If the requested fetch in the function user.possibleMatches went well, this callback function is called
+    function possibleMatchesCallBack(data) {
+        // Loop that loops through all users
+        for(var j=0; j < data.user.length; j++) {   
+            suggestedUsersArray.push(data.user[j])
+        }
+
+        nextUserIndex = 0;
+        if (suggestedUsersArray.length > 0) {
+            // If there are more than 0 users in the array of suggested users, the next user will be displayed
+            displayUser(suggestedUsersArray[0]);
+        }
+    }
+
+    // Instantiating the user so it is known which user is logged in
+    var user = new User(currentUser.name, currentUser.email, currentUser.password, currentUser.birthdate, 
+        currentUser.zipCode, currentUser.description, currentUser.genderId, currentUser.toothbrushId, currentUser.genderPreference, currentUser.agePreference
+    );
+    // Calling the function in the User class with input and the callback function
+    user.possibleMatches(currentUser, possibleMatchesCallBack);   
+    
 
     // If there are no more users, this is alerted. 
     document.getElementById("like").addEventListener('click', function(e) {
         e.preventDefault()
 
         // When liking a person, your ID and the other users ID is saved and sent to the database. 
-        //var currentUserId = currentUser;
-        var otherUserId = JSON.parse(document.getElementById("id").textContent);
+        var otherUserId = document.getElementById("id").textContent;
 
-        var newLike = new Match(currentUserId[0].userId, otherUserId)
-
-        console.log(newLike)
-
-        // This fetch listens to the localhost port 7071, and sends a request to the specified endpoint
-        fetch("http://localhost:7071/api/Like", {
-            method: 'POST', // post request that sends the like to the like table in the database
-            body: JSON.stringify({
-                currentUserId: currentUserId[0].userId, 
-                otherUserId: otherUserId
-            }),
-            headers: {
-                "Content-Type": "application/json; charset-UTF-8"
-            }
-        })
-        .then((response) => {
-            return response.json();
-        })
-        .then((data) => {
+        // If the requested fetch in the function user.like went well, this callback function is called
+        function likeCallBack(data) {
             console.log("Like created", data)
             // If the like is mutual, it returns that match == true. If so, an alert is created, to show the user that he/she has a match. 
             if (data.match == true) {
                 alert('Jubiii, match!') 
             }
+            // When the like is created, the next possible user will be displayed
             displayNextUser();
+        }
 
-        })
-        .catch((err) => {
-            console.log(err)
-        });
+        // Calling the function in the User class with inputs and the callback function
+        user.like(currentUser.userId, otherUserId, likeCallBack);
+
     }); 
 
-    // This fetch listens to the localhost port 7071, and sends a request to the specified endpoint
-    fetch("http://localhost:7071/api/PossibleMatches", {
-        method: 'POST', // post request that sends the like to the like table in the database
-        body: JSON.stringify({
-            user: currentUserId[0]
-        }),
-        headers: {
-            "Content-Type": "application/json; charset-UTF-8"
-        }
-    })
-    .then((response) => {
-        if (response.status !== 200) {
-            console.log("noget gik galt" + response.status)
-            return;
-        };
-
-        response.json().then(function (data) {           
-            // Loop that loops through all users
-            for(var j=0; j < data.user.length; j++) {   
-                suggestedUsersArray.push(data.user[j])
-            }
-
-            nextUserIndex = 0;
-            if (suggestedUsersArray.length > 0) {
-                displayUser(suggestedUsersArray[0]);
-            }
-        });
-    })
-
-    .catch((err) => {
-        console.log(err)
-        alert("Failed to get users")
-    })
+    // When the dislike button is clicked, the displayNextUser function is called = displaying the next possible match
+    document.getElementById("dislike").addEventListener('click', function(e) {
+        e.preventDefault()
+        // No logic when a user is dislikes besides the next user will be displayed
+        displayNextUser();
+    });  
 });
-
