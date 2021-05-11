@@ -1,0 +1,376 @@
+commit 698e58f73d6583524fd52898ac66d35f25bbee85
+Author: MathiasFaber <makr20ah@student.cbs.dk>
+Date:   Tue May 11 13:41:13 2021 +0200
+
+    final adjustments
+
+commit b21df97873117bc4456d05709b1630a6ad185768
+Author: MathiasFaber <makr20ah@student.cbs.dk>
+Date:   Tue May 11 09:14:46 2021 +0200
+
+    model
+
+commit b0352af72c554fc151f3db30f2f18383d3142d27
+Author: MathiasFaber <makr20ah@student.cbs.dk>
+Date:   Tue May 11 09:14:09 2021 +0200
+
+    testing works
+
+commit 6d8df53a2b053e56e1cea0a58bcfdc44194da3c8
+Author: MathiasFaber <makr20ah@student.cbs.dk>
+Date:   Mon May 10 23:52:00 2021 +0200
+
+    Implementing classes and comments
+
+commit b0d76a51ec7873d5b915ca924dae43515ab8322d
+Author: Mathias Kristiansen <makr20ah@student.cbs.dk>
+Date:   Mon May 10 23:35:39 2021 +0200
+
+    hej
+
+commit a04ff313a24073b5c4a02720cdbdafef592e2e3b
+Author: Mathias Kristiansen <makr20ah@student.cbs.dk>
+Date:   Thu May 6 14:27:27 2021 +0200
+
+    minor changes
+
+commit 8b43faa85ee7fd2f345a92f8b5343a09dca41137
+Author: Mathias Kristiansen <makr20ah@student.cbs.dk>
+Date:   Thu May 6 13:33:34 2021 +0200
+
+    Cleaning and testing/class implementation
+
+commit 4f10a32cd542e1d828fb522784ed1bc89591caef
+Author: Mathias Kristiansen <makr20ah@student.cbs.dk>
+Date:   Wed May 5 11:40:00 2021 +0200
+
+    minor changes
+
+commit 6a2751638c90b15edb7fbea7420e4049a3d580be
+Author: Mathias Kristiansen<makr20ah@student.cbs.dk>
+Date:   Tue May 4 12:40:01 2021 +0200
+
+    Code comments
+
+commit 9d34a1af2bbc9f847ceb5abf71d7f2f7950c85d7
+Author: Mathias Kristiansen <makr20ah@student.cbs.dk>
+Date:   Mon May 3 19:53:38 2021 +0200
+
+    Comments/tests
+
+commit 976ba18a14ca561573dc56cfc94c8b7678681219
+Author: Mathias Kristiansen <makr20ah@student.cbs.dk>
+Date:   Mon May 3 12:14:08 2021 +0200
+
+    testing initialized
+
+commit ca27f86eb9db4dd39f321eab5b9ecbd4c1450823
+Merge: 6eef9d0 4ebb747
+Author: Mathias Kristiansen <makr20ah@student.cbs.dk>
+Date:   Mon May 3 11:19:06 2021 +0200
+
+    Merge branch 'main' of into main
+
+commit 6eef9d055e5720624cc171f124eee0d52f1e1e94
+Merge: 3e3a990 d324599
+Author: Mathias Kristiansen <makr20ah@student.cbs.dk>
+Date:   Mon May 3 11:07:14 2021 +0200
+
+    Merge branch 'main' into Notification
+
+commit 3e3a9906657feb54f60e4cda44c181f85b088ec4
+Author: Mathias Kristiansen <makr20ah@student.cbs.dk>
+Date:   Mon May 3 10:59:36 2021 +0200
+
+    f
+
+commit d32459927c1e5e270e288965abefbf88b0780a1e
+Merge: b8de905 57aec6a
+Author: Mathias Kristiansen <makr20ah@student.cbs.dk>
+Date:   Mon May 3 10:56:00 2021 +0200
+
+    Merge branch 'notification' into main
+
+commit b8de90549c4b0df09c8d7e9b68da8eb5ad40d963
+Author: Mathias Kristiansen <makr20ah@student.cbs.dk>
+Date:   Mon May 3 10:53:29 2021 +0200
+
+    .DS_Store removed.
+
+commit bf22cb39c26eb681b678f3c8945bca71e25c72bb
+Author: Mathias Kristiansen <makr20ah@student.cbs.dk>
+Date:   Mon May 3 10:49:49 2021 +0200
+
+    m
+
+commit 57aec6aefa7878301e4e11873ec2c94a435eebd6
+Author: Mathias Kristiansen <makr20ah@student.cbs.dk>
+Date:   Mon May 3 10:46:33 2021 +0200
+
+    f
+
+commit 8e5c17dd7144cbd46bd5ec2feb88cf9c23052400
+Author: Mathias Kristiansen <makr20ah@student.cbs.dk>
+Date:   Mon May 3 10:45:36 2021 +0200
+
+    fully functional including notification
+
+commit 3ebb99a2b6484a7072767e12630e696dc1d6008d
+Author: Mathias Kristiansen <makr20ah@student.cbs.dk>
+Date:   Mon May 3 10:42:09 2021 +0200
+
+    fully functional
+
+commit f80e6deae151fe892d922b6c95f0d2e4a28e97ba
+Merge: 5464750 9e5732d
+Author: Mathias Kristiansen <makr20ah@student.cbs.dk>
+Date:   Fri Apr 30 13:17:33 2021 +0200
+
+    Merge branch 'admin' into main
+
+commit 9e5732d3d5e8b5447c19985a5d5c2f3c44e29f53
+Author: Mathias Kristiansen <makr20ah@student.cbs.dk>
+Date:   Fri Apr 30 13:16:15 2021 +0200
+
+    hej
+
+commit 45929d65ca6dbb21d9e27aa6731c1365aa870a2f
+Author: Mathias Kristiansen <makr20ah@student.cbs.dk>
+Date:   Fri Apr 30 13:15:47 2021 +0200
+
+    h
+
+commit 2b8d552303d3e295e3fac05e7b59d6a7985d5631
+Author: Mathias Kristiansen <makr20ah@student.cbs.dk>
+Date:   Fri Apr 30 13:13:18 2021 +0200
+
+    first admin push
+
+commit 84fe56dbccc792f3de4a03829bd80bba565546cf
+Author: Mathias Kristiansen <makr20ah@student.cbs.dk>
+Date:   Thu Apr 29 15:44:47 2021 +0200
+
+    Matches list and delete match works
+
+commit 9c640f0f18316ee88db42f3f302695cbef45cfe4
+Author: Mathias Kristiansen <makr20ah@student.cbs.dk>
+Date:   Thu Apr 29 11:18:09 2021 +0200
+
+    Show users, like, dislike, preferences/matchingalgorithm works
+
+commit a262a5c4eed519b38c1d5f7643c60bb1672b8ccd
+Author: Mathias Kristiansen <makr20ah@student.cbs.dk>
+Date:   Tue Apr 27 15:28:03 2021 +0200
+
+    update/allusers/oneUser works
+
+commit 95829c1f057cf40dbfb6c6f99cd432b5d5dbea6c
+Author: Mathias Kristiansen <makr20ah@student.cbs.dk>
+Date:   Tue Apr 27 11:24:36 2021 +0200
+
+    hej
+
+commit 8622af41c720f3624d1b2f8e4b7d7b661634b38f
+Author: Mathias Kristiansen <makr20ah@student.cbs.dk>
+Date:   Tue Apr 27 11:24:08 2021 +0200
+
+    hej
+
+commit 54647508f988f76f8bf49f6accdac835b91280f4
+Author: Mathias Kristiansen <makr20ah@student.cbs.dk>
+Date:   Mon Apr 26 14:39:14 2021 +0200
+
+    i
+
+commit 160ca913e892a67127f097418e7aa971f83c1aa3
+Author: Mathias Kristiansen <makr20ah@student.cbs.dk>
+Date:   Mon Apr 26 14:37:19 2021 +0200
+
+    f
+
+commit 146e1d9511aeb864a01ff2acd1991665398152ed
+Author: Mathias Kristiansen <makr20ah@student.cbs.dk>
+Date:   Mon Apr 26 14:36:53 2021 +0200
+
+    l
+
+commit a72c8e853acd30f9371cea63f9af8afe89ea57a7
+Merge: 164e862 d931c56
+Author: Mathias Kristiansen <makr20ah@student.cbs.dk>
+Date:   Mon Apr 26 14:36:42 2021 +0200
+
+    Merge branch 'main' into PossibleMatches
+
+commit 164e862877315970e1c2169bf849fc989dd264a7
+Author: Mathias Kristiansen <makr20ah@student.cbs.dk>
+Date:   Mon Apr 26 14:36:14 2021 +0200
+
+    f
+
+commit 15cbdbdd5c1b2277e875ae8b34ea4782ac9f3911
+Author: Mathias Kristiansen <makr20ah@student.cbs.dk>
+Date:   Mon Apr 26 14:35:42 2021 +0200
+
+    t
+
+commit f2971723221827d972de09d2055cf0cc4d86490f
+Author: Mathias Kristiansen <makr20ah@student.cbs.dk>
+Date:   Mon Apr 26 14:35:15 2021 +0200
+
+    k
+
+commit d931c564f95827f11be0bd956ab96a082ef7c2a3
+Author: Mathias Kristiansen <makr20ah@student.cbs.dk>
+Date:   Mon Apr 26 14:34:58 2021 +0200
+
+    hihi
+
+commit a6cb211cc4e1911a47d2a1ab4d71c09de897a800
+Author: Mathias Kristiansen <makr20ah@student.cbs.dk>
+Date:   Mon Apr 26 14:34:10 2021 +0200
+
+    h
+
+commit d970f1fb7442fd7cea3b2baa10f0518bd723e4f9
+Merge: d83f845 ebe70d4
+Author: Mathias Kristiansen <makr20ah@student.cbs.dk>
+Date:   Mon Apr 26 14:33:51 2021 +0200
+
+    Merge branch 'main' into possiblematches
+
+commit d83f845e20776a7c7767e83095fad0c5ed891f78
+Author: Mathias Kristiansen <makr20ah@student.cbs.dk>
+
+    t
+
+commit ebe70d48e7129c05eb0a108fe01ae0ca69ee758e
+Author: Mathias Kristiansen <makr20ah@student.cbs.dk>
+Date:   Mon Apr 26 14:32:45 2021 +0200
+
+    j
+
+commit 7d7cd33b16480f3f45c5858f82b066c568a006aa
+Author: Mathias Kristiansen <makr20ah@student.cbs.dk>
+Date:   Mon Apr 26 14:24:57 2021 +0200
+
+    f
+
+commit 2c5638f348b2d99e737000f8462c8831b08924d6
+Author: Mathias Kristiansen <makr20ah@student.cbs.dk>
+Date:   Mon Apr 26 14:24:38 2021 +0200
+
+    y
+
+commit 4ebb747125469005105b6dc0fb8f90d887cb3d30
+Author: Mathias Kristiansen <makr20ah@student.cbs.dk>
+Date:   Mon Apr 26 14:23:43 2021 +0200
+
+    j
+
+commit a78094de93ba3a6934cf9fce5c910b95d807f4fd
+Author: Mathias Kristiansen <makr20ah@student.cbs.dk>
+Date:   Mon Apr 26 14:18:46 2021 +0200
+
+    e
+
+commit e49a438d9dd65f6849ed89e9d37ed8fa15915562
+Author: Mathias Kristiansen <makr20ah@student.cbs.dk>
+Date:   Mon Apr 26 14:14:54 2021 +0200
+
+    h
+
+commit 62407da450d4b894219b12fccaa78d48c11139c7
+Author: Mathias Kristiansen <makr20ah@student.cbs.dk>
+Date:   Mon Apr 26 14:14:07 2021 +0200
+
+    g
+
+commit 4543e8c8eda332883c8c452d14e5427493b8f031
+Author: Mathias Kristiansen <makr20ah@student.cbs.dk>
+Date:   Mon Apr 26 14:03:56 2021 +0200
+
+    b
+
+commit b0199bfc1780d93501e4f91c7cd8ee6561455b09
+Author: Mathias Kristiansen <makr20ah@student.cbs.dk>
+Date:   Mon Apr 26 14:03:43 2021 +0200
+
+    n
+
+commit fc88a6e29ad0a6df9daabf4d727d145a2e03a350
+Author: Mathias Kristiansen <makr20ah@student.cbs.dk>
+Date:   Mon Apr 26 14:01:23 2021 +0200
+
+    signup/login/logout/delete works
+
+commit 2c9375fb9a151955cfd8d9ab0d67e21355f0fb63
+Author: Mathias Kristiansen <makr20ah@student.cbs.dk>
+Date:   Mon Apr 26 14:00:53 2021 +0200
+
+    signup/login/logout/delete works
+
+commit 8c789374a6ee2480a03af371b2bce1f055195e7e
+Author: Mathias Kristiansen <makr20ah@student.cbs.dk>
+Date:   Sat Apr 24 18:22:37 2021 +0200
+
+    delete and localstorage/login
+
+commit 2df34d89981b9a16c505bc9cbeb30e6396b6f15f
+Author: Mathias Kristiansen <makr20ah@student.cbs.dk>
+Date:   Fri Apr 23 12:10:22 2021 +0200
+
+    get users experiments
+
+commit 91199c7721484d0d0af0ba8fb697f8d0469c7e44
+Author: Mathias Kristiansen <makr20ah@student.cbs.dk>
+Date:   Fri Apr 23 09:20:26 2021 +0200
+
+    first push to this branch
+
+commit 35689c25523772adbf2a99980588ed9d2bc48dac
+Author: Mathias Kristiansen <makr20ah@student.cbs.dk>
+Date:   Fri Apr 23 09:18:05 2021 +0200
+
+    main
+
+commit 203a907db06f75a9a50631461997269735d9d933
+Author: Mathias Kristiansen <makr20ah@student.cbs.dk>
+Date:   Fri Apr 23 09:15:37 2021 +0200
+
+    m
+
+commit a496b04bf6e20b9a6fd5ce17cb875fd3620528bf
+Author: Mathias Kristiansen <makr20ah@student.cbs.dk>
+Date:   Fri Apr 23 09:14:53 2021 +0200
+
+    m
+
+commit 02a65e7f6363a85be07f88d529927c33ff88c66b
+Author: Mathias Kristiansen <makr20ah@student.cbs.dk>
+Date:   Fri Apr 23 09:05:56 2021 +0200
+
+    Possiblematches
+
+commit da66d149c64f5d014e07264db2d2ce8a43e70305
+Author: Mathias Kristiansen <makr20ah@student.cbs.dk>
+Date:   Wed Apr 21 12:19:47 2021 +0200
+
+    working with delete profile
+
+commit cbed93141b2c3249990a0aa2cb9964df4940a5a5
+Author: Mathias Kristiansen <makr20ah@student.cbs.dk>
+Date:   Wed Apr 21 10:41:27 2021 +0200
+
+    Login function
+
+commit c8f855f83e0ebc2c47df0c932b7f9d37737134f5
+Author: Mathias Kristiansen <makr20ah@student.cbs.dk>
+Date:   Tue Apr 20 21:36:50 2021 +0200
+
+    adjustments
+
+commit f3d249802dfbf2a3915453644762d4e5849adedc
+Author: Mathias Kristiansen <makr20ah@student.cbs.dk>
+Date:   Tue Apr 20 10:59:19 2021 +0200
+
+    first commit

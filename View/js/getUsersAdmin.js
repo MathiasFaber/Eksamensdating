@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function(){
             users.className = "match";
             
             // the div is populated with a classname, an ID matching the user displayed and an onclick function.
-            users.innerHTML += '<div class="matchName" id='+data[i].userId+' onclick="oneUser('+data[i].userId+')">'+data[i].name+'</div>';
+            users.innerHTML += '<div class="matchName" id='+data[i].userId+' onclick="oneUser('+data[i].userId+')">'+data[i].userId+'        '+data[i].name+'</div>';
         
             // For each user a new 'users.innerhtml' is made. This is done by using the appenChild function. 
             // This means that for each user in the database, the appendChild function will create a new line with the name of the next user. 
