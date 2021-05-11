@@ -205,7 +205,6 @@ function getUsers (data) {
                 result[column.metadata.colName] = column.value;
             });
 
-  
             for (;;) {
                 // If the user in the data is equal to the current user, it continues/ignores the suggested user. 
                 // This is done, so that the user does not see himself/herself as a possible match

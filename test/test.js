@@ -29,7 +29,8 @@ describe.only('API', function (){
           }
         await post(context, req)
         console.log(context)
-        expect(context.res.body.match).to.be.equal(1)
-
+        expect(context.res.body.match).to.be.equal(1);               
+        expect(context.res.body.match).to.be.an('number'),
+        expect(context.res.body.match).not.to.be.equal(false);
     });
 });

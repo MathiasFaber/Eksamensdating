@@ -1,18 +1,22 @@
+// The attributes with an underscore, symbolizes that the attribute is private
+// The group haven't implemented getters and setters, which is why the private attributes are only symbolized with the underscore instead of actually being private. 
 class User {
-    constructor(name, email, password, birthdate, zipCode, description, genderId, toothbrushId, genderPreference, agePreference) {
+    constructor(name, email, _password, birthdate, zipCode, description, _genderId, _toothbrushId, _genderPreference, _agePreference) {
         this.user = {
             name: name,
             email: email,
-            password: password,
+            password: _password,
             birthdate: birthdate,
             zipCode: zipCode,
             description: description,
-            genderId: genderId,
-            toothbrushId: toothbrushId,
-            genderPreference: genderPreference,
-            agePreference: agePreference
+            genderId: _genderId,
+            toothbrushId: _toothbrushId,
+            genderPreference: _genderPreference,
+            agePreference: _agePreference
         }
     };
+
+
 
     // Creating new user
     createUser(callback) {
